@@ -3,16 +3,16 @@
 #   * Rearrange models' order
 #   * Make sure each model has one field with primary_key=True
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+#   * Remove `managed = True` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
 class RefBroadDisciplineGroupCategory(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    discipline_group_category = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    discipline_group_category = models.CharField(max_length=250)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_broad_discipline_group_category'
 
 
@@ -22,7 +22,7 @@ class RefBroadDisciplineGroup(models.Model):
     discipline_group = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_broad_discipline_group'
 
 
@@ -31,7 +31,7 @@ class RefCollegeInstitutionStatutoryBody(models.Model):
     statutory_body = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_college_institution_statutory_body'
 
 
@@ -40,7 +40,7 @@ class RefCountByCategoryRemarks(models.Model):
     statutory_body = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_count_by_category_remarks'
 
 
@@ -50,7 +50,7 @@ class RefCountry(models.Model):
     country_name = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_country'
 
 
@@ -60,7 +60,7 @@ class RefCourseLevel(models.Model):
     name = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_course_level'
 
 
@@ -69,7 +69,7 @@ class RefCourseMode(models.Model):
     mode = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_course_mode'
 
 
@@ -78,7 +78,7 @@ class RefCourseType(models.Model):
     type = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_course_type'
 
 
@@ -87,7 +87,7 @@ class RefDiplomaCourse(models.Model):
     type = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_diploma_course'
 
 
@@ -99,7 +99,7 @@ class RefDistrict(models.Model):
     lgd_district_code = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_district'
         unique_together = (('st_code', 'dist_code'),)
 
@@ -109,7 +109,7 @@ class RefExaminationSystem(models.Model):
     system = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_examination_system'
 
 
@@ -118,7 +118,7 @@ class RefInstituteType(models.Model):
     name = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_institute_type'
 
 
@@ -127,7 +127,7 @@ class RefInstitutionManagement(models.Model):
     management = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_institution_management'
 
 
@@ -136,7 +136,7 @@ class RefNonTeachingStaffGroup(models.Model):
     staff_group = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_non_teaching_staff_group'
 
 
@@ -145,7 +145,7 @@ class RefNonTeachingStaffType(models.Model):
     staff_type = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_non_teaching_staff_type'
 
 
@@ -155,7 +155,7 @@ class RefProgramme(models.Model):
     course_level = models.ForeignKey(RefCourseLevel, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_programme'
 
 
@@ -165,7 +165,7 @@ class RefProgrammeBroadDisciplineGroupAndCategory(models.Model):
     broad_discipline_group = models.ForeignKey(RefBroadDisciplineGroup, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_programme_broad_discipline_group_and_category'
 
 
@@ -176,7 +176,7 @@ class RefProgrammeStatutoryBody(models.Model):
     valid_for_form3 = models.BooleanField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_programme_statutory_body'
 
 
@@ -187,7 +187,7 @@ class RefSpeciality(models.Model):
     valid_for_form2 = models.BooleanField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_speciality'
 
 
@@ -197,7 +197,7 @@ class RefState(models.Model):
     lgd_code = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_state'
 
 
@@ -206,7 +206,7 @@ class RefStateBody(models.Model):
     type = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_state_body'
 
 
@@ -220,7 +220,7 @@ class RefStandaloneInstitution(models.Model):
     district_code = models.CharField(max_length=-1, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_standalone_institution'
 
 
@@ -229,7 +229,7 @@ class RefStudentHostelType(models.Model):
     type = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_student_hostel_type'
 
 
@@ -241,7 +241,7 @@ class RefTeachingStaffDesignation(models.Model):
     valid_for_form3 = models.BooleanField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_teaching_staff_designation'
 
 
@@ -250,7 +250,7 @@ class RefTeachingStaffSelectionMode(models.Model):
     selection_mode = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_teaching_staff_selection_mode'
 
 
@@ -259,7 +259,7 @@ class RefUniversityCollegeType(models.Model):
     type = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_university_college_type'
 
 
@@ -268,7 +268,7 @@ class RefUniversityType(models.Model):
     type = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_university_type'
 
 
@@ -283,7 +283,7 @@ class RefUniversity(models.Model):
     district_code = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ref_university'
         unique_together = (('id', 'survey_year'),)
 
@@ -296,7 +296,7 @@ class Accreditation(models.Model):
     has_score = models.BooleanField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'accreditation'
 
 
@@ -304,7 +304,7 @@ class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'auth_group'
 
 
@@ -314,7 +314,7 @@ class AuthGroupPermissions(models.Model):
     permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'auth_group_permissions'
         unique_together = (('group', 'permission'),)
 
@@ -325,7 +325,7 @@ class AuthPermission(models.Model):
     codename = models.CharField(max_length=100)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'auth_permission'
         unique_together = (('content_type', 'codename'),)
 
@@ -343,7 +343,7 @@ class AuthUser(models.Model):
     date_joined = models.DateTimeField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'auth_user'
 
 
@@ -353,7 +353,7 @@ class AuthUserGroups(models.Model):
     group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'auth_user_groups'
         unique_together = (('user', 'group'),)
 
@@ -364,7 +364,7 @@ class AuthUserUserPermissions(models.Model):
     permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'auth_user_user_permissions'
         unique_together = (('user', 'permission'),)
 
@@ -381,7 +381,7 @@ class College(models.Model):
     is_dcf_applicable = models.BooleanField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'college'
         unique_together = (('id', 'survey_year'),)
 
@@ -391,7 +391,7 @@ class Department(models.Model):
     name = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'department'
 
 
@@ -400,7 +400,7 @@ class Faculty(models.Model):
     name = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'faculty'
 
 
@@ -452,7 +452,7 @@ class PersonsCountByCategory(models.Model):
     other_minority_remarks = models.ForeignKey('RefCountByCategoryRemarks', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'persons_count_by_category'
 
 
@@ -461,7 +461,7 @@ class Loan(models.Model):
     count_by_category = models.ForeignKey('PersonsCountByCategory', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'loan'
 
 
@@ -474,7 +474,7 @@ class NonTeachingStaffCount(models.Model):
     count_by_category = models.ForeignKey('PersonsCountByCategory', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'non_teaching_staff_count'
 
 
@@ -493,7 +493,7 @@ class PrivateStudentsResult(models.Model):
     first_class_passed_female = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'private_students_result'
 
 
@@ -504,7 +504,7 @@ class StaffQuarter(models.Model):
     total = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'staff_quarter'
 
 
@@ -529,7 +529,7 @@ class Course(models.Model):
     survey_year = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'course'
 
 
@@ -538,7 +538,7 @@ class Scholarship(models.Model):
     count_by_category = models.ForeignKey(PersonsCountByCategory, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'scholarship'
 
 
@@ -599,7 +599,7 @@ class University(models.Model):
     has_foreign_teachers = models.BooleanField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'university'
         unique_together = (('id', 'survey_year'),)
 
@@ -614,7 +614,7 @@ class RegionalCenter(models.Model):
     survey_year = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'regional_center'
 
 
@@ -624,7 +624,7 @@ class UniversityAccreditation(models.Model):
     accreditation = models.OneToOneField(Accreditation, models.DO_NOTHING, primary_key=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'university_accreditation'
 
 
@@ -634,7 +634,7 @@ class UniversityDepartment(models.Model):
     survey_year = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'university_department'
 
 
@@ -644,7 +644,7 @@ class UniversityFaculty(models.Model):
     survey_year = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'university_faculty'
 
 
@@ -658,7 +658,7 @@ class TeachingStaffSanctionedStrength(models.Model):
     no_of_phd_teachers = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'teaching_staff_sanctioned_strength'
 
 
@@ -670,7 +670,7 @@ class StudentHostel(models.Model):
     type = models.ForeignKey(RefStudentHostelType, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'student_hostel'
 
 
@@ -680,7 +680,7 @@ class TeachingStaff(models.Model):
     department_name = models.CharField(max_length=-1, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'teaching_staff'
 
 
@@ -731,7 +731,7 @@ class StandaloneInstitution(models.Model):
     has_foreign_teachers = models.BooleanField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'standalone_institution'
         unique_together = (('id', 'survey_year'),)
 
@@ -742,7 +742,7 @@ class UniversityPrivateStudentsResult(models.Model):
     private_students_result = models.ForeignKey(PrivateStudentsResult, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'university_private_students_result'
 
 
@@ -752,7 +752,7 @@ class UniversityStudentHostel(models.Model):
     survey_year = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'university_student_hostel'
 
 
@@ -762,7 +762,7 @@ class StandaloneInstitutionStudentHostel(models.Model):
     survey_year = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'standalone_institution_student_hostel'
 
 
@@ -772,7 +772,7 @@ class StandaloneInstitutionTeachingStaff(models.Model):
     teaching_staff = models.ForeignKey('TeachingStaff', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'standalone_institution_teaching_staff'
 
 
@@ -782,7 +782,7 @@ class StandaloneInstitutionTeachingStaffSanctionedStrength(models.Model):
     teaching_staff_sanctioned_strength = models.ForeignKey('TeachingStaffSanctionedStrength', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'standalone_institution_teaching_staff_sanctioned_strength'
 
 
@@ -794,7 +794,7 @@ class TeachingStaffCount(models.Model):
     selection_mode = models.ForeignKey(RefTeachingStaffSelectionMode, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'teaching_staff_count'
 
 
@@ -804,7 +804,7 @@ class UniversityTeachingStaff(models.Model):
     teaching_staff = models.ForeignKey(TeachingStaff, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'university_teaching_staff'
 
 
@@ -814,7 +814,7 @@ class UniversityTeachingStaffSanctionedStrength(models.Model):
     teaching_staff_sanctioned_strength = models.ForeignKey(TeachingStaffSanctionedStrength, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'university_teaching_staff_sanctioned_strength'
 
 
@@ -824,7 +824,7 @@ class StandaloneInstitutionAccreditation(models.Model):
     accreditation = models.ForeignKey(Accreditation, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'standalone_institution_accreditation'
 
 
@@ -834,7 +834,7 @@ class StandaloneInstitutionDepartment(models.Model):
     survey_year = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'standalone_institution_department'
 
 
@@ -844,7 +844,7 @@ class StandaloneInstitutionFaculty(models.Model):
     survey_year = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'standalone_institution_faculty'
 
 
@@ -902,7 +902,7 @@ class Infrastructure(models.Model):
     anti_ragging_cell = models.BooleanField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'infrastructure'
 
 
@@ -917,7 +917,7 @@ class EnrolledForeignStudentCount(models.Model):
     level = models.ForeignKey('RefCourseLevel', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'enrolled_foreign_student_count'
 
 
@@ -933,7 +933,7 @@ class EnrolledStudentCount(models.Model):
     broad_discipline_group = models.ForeignKey('RefBroadDisciplineGroup', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'enrolled_student_count'
 
 
@@ -954,7 +954,7 @@ class ExaminationResult(models.Model):
     examination_result_id = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'examination_result'
 
 
@@ -963,7 +963,7 @@ class FacultyDepartment(models.Model):
     department = models.ForeignKey(Department, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'faculty_department'
 
 
@@ -973,7 +973,7 @@ class UniversityNonTeachingStaffCount(models.Model):
     non_teaching_staff_count = models.ForeignKey(NonTeachingStaffCount, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'university_non_teaching_staff_count'
 
 
@@ -984,7 +984,7 @@ class EnrolledDistanceStudentUniversity(models.Model):
     district_code = models.CharField(max_length=-1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'enrolled_distance_student_university'
 
 
@@ -994,7 +994,7 @@ class StandaloneInstitutionNonTeachingStaffCount(models.Model):
     non_teaching_staff_count = models.ForeignKey(NonTeachingStaffCount, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'standalone_institution_non_teaching_staff_count'
 
 
@@ -1053,7 +1053,7 @@ class CollegeInstitution(models.Model):
     has_foreign_teachers = models.BooleanField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'college_institution'
         unique_together = (('id', 'survey_year'),)
 
@@ -1064,7 +1064,7 @@ class CollegeInstitutionAccreditation(models.Model):
     accreditation = models.OneToOneField(Accreditation, models.DO_NOTHING, primary_key=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'college_institution_accreditation'
 
 
@@ -1074,7 +1074,7 @@ class CollegeInstitutionDepartment(models.Model):
     survey_year = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'college_institution_department'
 
 
@@ -1084,7 +1084,7 @@ class CollegeInstitutionNonTeachingStaffCount(models.Model):
     non_teaching_staff_count = models.OneToOneField('NonTeachingStaffCount', models.DO_NOTHING, primary_key=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'college_institution_non_teaching_staff_count'
 
 
@@ -1094,7 +1094,7 @@ class CollegeInstitutionStudentHostel(models.Model):
     survey_year = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'college_institution_student_hostel'
 
 
@@ -1104,7 +1104,7 @@ class CollegeInstitutionTeachingStaff(models.Model):
     teaching_staff = models.ForeignKey('TeachingStaff', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'college_institution_teaching_staff'
 
 
@@ -1113,7 +1113,7 @@ class EnrolledDistanceStudentUniversityCount(models.Model):
     enrolled_student_count_id = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'enrolled_distance_student_university_count'
 
 
@@ -1123,7 +1123,7 @@ class CourseExaminationResult(models.Model):
     examination_result = models.ForeignKey('ExaminationResult', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'course_examination_result'
 
 
@@ -1133,7 +1133,7 @@ class CourseEnrolledForeignStudentCount(models.Model):
     enrolled_foreign_student_count = models.ForeignKey('EnrolledForeignStudentCount', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'course_enrolled_foreign_student_count'
 
 
@@ -1143,7 +1143,7 @@ class CourseEnrolledStudentCount(models.Model):
     enrolled_student_count = models.ForeignKey('EnrolledStudentCount', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'course_enrolled_student_count'
 
 
@@ -1153,7 +1153,7 @@ class UniversityEnrolledDistanceStudent(models.Model):
     enrolled_distance_student_university = models.ForeignKey(EnrolledDistanceStudentUniversity, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'university_enrolled_distance_student'
 
 
@@ -1167,7 +1167,7 @@ class EducationalInstitutionCourse(models.Model):
     survey_year = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'educational_institution_course'
 
 
@@ -1177,7 +1177,7 @@ class CollegeInstitutionTeachingStaffSanctionedStrength(models.Model):
     teaching_staff_sanctioned_strength = models.ForeignKey('TeachingStaffSanctionedStrength', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'college_institution_teaching_staff_sanctioned_strength'
 
 
@@ -1187,7 +1187,7 @@ class CollegeInstitutionFaculty(models.Model):
     survey_year = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'college_institution_faculty'
 
 
@@ -1201,7 +1201,7 @@ class DjangoAdminLog(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'django_admin_log'
 
 
@@ -1210,7 +1210,7 @@ class DjangoContentType(models.Model):
     model = models.CharField(max_length=100)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'django_content_type'
         unique_together = (('app_label', 'model'),)
 
@@ -1222,7 +1222,7 @@ class DjangoMigrations(models.Model):
     applied = models.DateTimeField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'django_migrations'
 
 
@@ -1232,7 +1232,7 @@ class DjangoSession(models.Model):
     expire_date = models.DateTimeField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'django_session'
 
 
