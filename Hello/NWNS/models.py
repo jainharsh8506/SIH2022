@@ -606,7 +606,7 @@ class University(models.Model):
 
 class RegionalCenter(models.Model):
     id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=250
+    name = models.CharField(max_length=250)
     university = models.ForeignKey('University', models.DO_NOTHING)
     no_of_study_centers = models.IntegerField(blank=True, null=True)
     district_code = models.CharField(max_length=30)
