@@ -347,7 +347,7 @@ class PersonsCountByCategory(models.Model):
     total_obc_females = models.IntegerField(blank=True, null=True)
     total_total_persons = models.IntegerField(blank=True, null=True)
     total_total_females = models.IntegerField(blank=True, null=True)
-    total_remarks = models.ForeignKey('RefCountByCategoryRemarks', models.DO_NOTHING, blank=True, null=True)
+    total_remarks = models.ForeignKey('RefCountByCategoryRemarks', models.DO_NOTHING, blank=True, null=True, related_name='foreign_total_remarks')
     pwd_general_total = models.IntegerField(blank=True, null=True)
     pwd_general_females = models.IntegerField(blank=True, null=True)
     pwd_sc_total = models.IntegerField(blank=True, null=True)
@@ -358,7 +358,7 @@ class PersonsCountByCategory(models.Model):
     pwd_obc_females = models.IntegerField(blank=True, null=True)
     pwd_total_persons = models.IntegerField(blank=True, null=True)
     pwd_total_females = models.IntegerField(blank=True, null=True)
-    pwd_remarks = models.ForeignKey('RefCountByCategoryRemarks', models.DO_NOTHING, blank=True, null=True)
+    pwd_remarks = models.ForeignKey('RefCountByCategoryRemarks', models.DO_NOTHING, blank=True, null=True, related_name='foreign_pwd_remarks')
     muslim_minority_general_total = models.IntegerField(blank=True, null=True)
     muslim_minority_general_females = models.IntegerField(blank=True, null=True)
     muslim_minority_sc_total = models.IntegerField(blank=True, null=True)
@@ -369,7 +369,7 @@ class PersonsCountByCategory(models.Model):
     muslim_minority_obc_females = models.IntegerField(blank=True, null=True)
     muslim_minority_total_persons = models.IntegerField(blank=True, null=True)
     muslim_minority_total_females = models.IntegerField(blank=True, null=True)
-    muslim_minority_remarks = models.ForeignKey('RefCountByCategoryRemarks', models.DO_NOTHING, blank=True, null=True)
+    muslim_minority_remarks = models.ForeignKey('RefCountByCategoryRemarks', models.DO_NOTHING, blank=True, null=True, related_name='foreign_muslim_minority_remarks')
     other_minority_general_total = models.IntegerField(blank=True, null=True)
     other_minority_general_females = models.IntegerField(blank=True, null=True)
     other_minority_sc_total = models.IntegerField(blank=True, null=True)
@@ -380,7 +380,7 @@ class PersonsCountByCategory(models.Model):
     other_minority_obc_females = models.IntegerField(blank=True, null=True)
     other_minority_total_persons = models.IntegerField(blank=True, null=True)
     other_minority_total_females = models.IntegerField(blank=True, null=True)
-    other_minority_remarks = models.ForeignKey('RefCountByCategoryRemarks', models.DO_NOTHING, blank=True, null=True)
+    other_minority_remarks = models.ForeignKey('RefCountByCategoryRemarks', models.DO_NOTHING, blank=True, null=True, related_name='foreign_other_minority_remarks')
 
     class Meta:
         managed = True
