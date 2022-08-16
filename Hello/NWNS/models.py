@@ -27,8 +27,8 @@ class RefBroadDisciplineGroup(models.Model):
 
 
 class RefCollegeInstitutionStatutoryBody(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    statutory_body = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    statutory_body = models.CharField(max_length=100)
 
     class Meta:
         managed = True
@@ -36,8 +36,8 @@ class RefCollegeInstitutionStatutoryBody(models.Model):
 
 
 class RefCountByCategoryRemarks(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    statutory_body = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    statutory_body = models.CharField(max_length=100)
 
     class Meta:
         managed = True
@@ -46,8 +46,8 @@ class RefCountByCategoryRemarks(models.Model):
 
 class RefCountry(models.Model):
     country_id = models.IntegerField(primary_key=True)
-    country_code = models.CharField(max_length=-1)
-    country_name = models.CharField(max_length=-1)
+    country_code = models.CharField(max_length=20)
+    country_name = models.CharField(max_length=100)
 
     class Meta:
         managed = True
@@ -55,9 +55,9 @@ class RefCountry(models.Model):
 
 
 class RefCourseLevel(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    level = models.CharField(max_length=-1)
-    name = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    level = models.CharField(max_length=20)
+    name = models.CharField(max_length=100)
 
     class Meta:
         managed = True
@@ -65,8 +65,8 @@ class RefCourseLevel(models.Model):
 
 
 class RefCourseMode(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    mode = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    mode = models.CharField(max_length=30)
 
     class Meta:
         managed = True
@@ -74,8 +74,8 @@ class RefCourseMode(models.Model):
 
 
 class RefCourseType(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    type = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    type = models.CharField(max_length=30)
 
     class Meta:
         managed = True
@@ -83,8 +83,8 @@ class RefCourseType(models.Model):
 
 
 class RefDiplomaCourse(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    type = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    type = models.CharField(max_length=30)
 
     class Meta:
         managed = True
@@ -92,9 +92,9 @@ class RefDiplomaCourse(models.Model):
 
 
 class RefDistrict(models.Model):
-    dist_code = models.CharField(max_length=-1)
-    st_code = models.CharField(primary_key=True, max_length=-1)
-    name = models.CharField(max_length=-1)
+    dist_code = models.CharField(max_length=30)
+    st_code = models.CharField(primary_key=True, max_length=30)
+    name = models.CharField(max_length=250)
     sno = models.IntegerField()
     lgd_district_code = models.IntegerField()
 
@@ -105,8 +105,8 @@ class RefDistrict(models.Model):
 
 
 class RefExaminationSystem(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    system = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    system = models.CharField(max_length=100)
 
     class Meta:
         managed = True
@@ -114,8 +114,8 @@ class RefExaminationSystem(models.Model):
 
 
 class RefInstituteType(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    name = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    name = models.CharField(max_length=250)
 
     class Meta:
         managed = True
@@ -123,8 +123,8 @@ class RefInstituteType(models.Model):
 
 
 class RefInstitutionManagement(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    management = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    management = models.CharField(max_length=100)
 
     class Meta:
         managed = True
@@ -132,8 +132,8 @@ class RefInstitutionManagement(models.Model):
 
 
 class RefNonTeachingStaffGroup(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    staff_group = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    staff_group = models.CharField(max_length=100)
 
     class Meta:
         managed = True
@@ -141,8 +141,8 @@ class RefNonTeachingStaffGroup(models.Model):
 
 
 class RefNonTeachingStaffType(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    staff_type = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    staff_type = models.CharField(max_length=100)
 
     class Meta:
         managed = True
@@ -150,8 +150,8 @@ class RefNonTeachingStaffType(models.Model):
 
 
 class RefProgramme(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    programme = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    programme = models.CharField(max_length=100)
     course_level = models.ForeignKey(RefCourseLevel, models.DO_NOTHING)
 
     class Meta:
@@ -170,8 +170,8 @@ class RefProgrammeBroadDisciplineGroupAndCategory(models.Model):
 
 
 class RefProgrammeStatutoryBody(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    statutory_body = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    statutory_body = models.CharField(max_length=100)
     valid_for_form2 = models.BooleanField()
     valid_for_form3 = models.BooleanField()
 
@@ -181,8 +181,8 @@ class RefProgrammeStatutoryBody(models.Model):
 
 
 class RefSpeciality(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    speciality = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    speciality = models.CharField(max_length=100)
     valid_for_form1 = models.BooleanField()
     valid_for_form2 = models.BooleanField()
 
@@ -192,8 +192,8 @@ class RefSpeciality(models.Model):
 
 
 class RefState(models.Model):
-    st_code = models.CharField(primary_key=True, max_length=-1)
-    name = models.CharField(max_length=-1)
+    st_code = models.CharField(primary_key=True, max_length=30)
+    name = models.CharField(max_length=100)
     lgd_code = models.IntegerField()
 
     class Meta:
@@ -203,7 +203,7 @@ class RefState(models.Model):
 
 class RefStateBody(models.Model):
     id = models.IntegerField(primary_key=True)
-    type = models.CharField(max_length=-1)
+    type = models.CharField(max_length=50)
 
     class Meta:
         managed = True
@@ -211,13 +211,13 @@ class RefStateBody(models.Model):
 
 
 class RefStandaloneInstitution(models.Model):
-    aishe_code = models.CharField(primary_key=True, max_length=-1)
+    aishe_code = models.CharField(primary_key=True, max_length=30)
     statecode = models.ForeignKey('RefState', models.DO_NOTHING, db_column='statecode')
-    name = models.CharField(max_length=-1)
+    name = models.CharField(max_length=250)
     id = models.IntegerField()
     statebodyid = models.ForeignKey('RefStateBody', models.DO_NOTHING, db_column='statebodyid')
     survey_year = models.IntegerField()
-    district_code = models.CharField(max_length=-1, blank=True, null=True)
+    district_code = models.CharField(max_length=30, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -225,8 +225,8 @@ class RefStandaloneInstitution(models.Model):
 
 
 class RefStudentHostelType(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    type = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    type = models.CharField(max_length=50)
 
     class Meta:
         managed = True
@@ -234,8 +234,8 @@ class RefStudentHostelType(models.Model):
 
 
 class RefTeachingStaffDesignation(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    designation = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    designation = models.CharField(max_length=100)
     valid_for_form1 = models.BooleanField()
     valid_for_form2 = models.BooleanField()
     valid_for_form3 = models.BooleanField()
@@ -246,8 +246,8 @@ class RefTeachingStaffDesignation(models.Model):
 
 
 class RefTeachingStaffSelectionMode(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    selection_mode = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    selection_mode = models.CharField(max_length=50)
 
     class Meta:
         managed = True
@@ -255,8 +255,8 @@ class RefTeachingStaffSelectionMode(models.Model):
 
 
 class RefUniversityCollegeType(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    type = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    type = models.CharField(max_length=50)
 
     class Meta:
         managed = True
@@ -264,8 +264,8 @@ class RefUniversityCollegeType(models.Model):
 
 
 class RefUniversityType(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
-    type = models.CharField(max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
+    type = models.CharField(max_length=50)
 
     class Meta:
         managed = True
@@ -273,14 +273,14 @@ class RefUniversityType(models.Model):
 
 
 class RefUniversity(models.Model):
-    aishe_code = models.CharField(max_length=-1)
-    id = models.CharField(primary_key=True, max_length=-1)
-    name = models.CharField(max_length=-1)
+    aishe_code = models.CharField(max_length=30)
+    id = models.CharField(primary_key=True, max_length=30)
+    name = models.CharField(max_length=250)
     statecode = models.ForeignKey(RefState, models.DO_NOTHING, db_column='statecode')
     survey_year = models.IntegerField()
     is_dcf_applicable = models.BooleanField()
     type = models.ForeignKey('RefUniversityType', models.DO_NOTHING)
-    district_code = models.CharField(max_length=-1)
+    district_code = models.CharField(max_length=30)
 
     class Meta:
         managed = True
@@ -290,7 +290,7 @@ class RefUniversity(models.Model):
 
 class Accreditation(models.Model):
     id = models.IntegerField(primary_key=True)
-    accreditation_body = models.CharField(max_length=-1)
+    accreditation_body = models.CharField(max_length=250)
     score = models.FloatField(blank=True, null=True)
     max_score = models.FloatField(blank=True, null=True)
     has_score = models.BooleanField()
@@ -370,11 +370,11 @@ class AuthUserUserPermissions(models.Model):
 
 
 class College(models.Model):
-    aishe_code = models.CharField(max_length=-1)
+    aishe_code = models.CharField(max_length=50)
     id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=-1)
+    name = models.CharField(max_length=250)
     university = models.ForeignKey('RefUniversity', models.DO_NOTHING)
-    district_code = models.CharField(max_length=-1)
+    district_code = models.CharField(max_length=30)
     state_code = models.ForeignKey('RefDistrict', models.DO_NOTHING, db_column='state_code')
     type = models.ForeignKey('RefUniversityCollegeType', models.DO_NOTHING)
     survey_year = models.IntegerField()
@@ -388,7 +388,7 @@ class College(models.Model):
 
 class Department(models.Model):
     id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=-1)
+    name = models.CharField(max_length=250)
 
     class Meta:
         managed = True
@@ -397,7 +397,7 @@ class Department(models.Model):
 
 class Faculty(models.Model):
     id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=-1)
+    name = models.CharField(max_length=250)
 
     class Meta:
         managed = True
@@ -484,7 +484,7 @@ class PrivateStudentsResult(models.Model):
     programme = models.ForeignKey('RefProgramme', models.DO_NOTHING)
     broad_discipline_group_category = models.ForeignKey('RefBroadDisciplineGroupCategory', models.DO_NOTHING)
     broad_discipline_group = models.ForeignKey('RefBroadDisciplineGroup', models.DO_NOTHING)
-    discipline = models.CharField(max_length=-1)
+    discipline = models.CharField(max_length=100)
     appeared_total = models.IntegerField()
     appeared_female = models.IntegerField()
     passed_total = models.IntegerField()
@@ -514,7 +514,7 @@ class Course(models.Model):
     only_through_colleges = models.BooleanField(blank=True, null=True)
     level = models.ForeignKey('RefCourseLevel', models.DO_NOTHING, blank=True, null=True)
     programme = models.ForeignKey('RefProgramme', models.DO_NOTHING, blank=True, null=True)
-    discipline = models.CharField(max_length=-1, blank=True, null=True)
+    discipline = models.CharField(max_length=100, blank=True, null=True)
     broad_discipline_group = models.ForeignKey('RefBroadDisciplineGroup', models.DO_NOTHING, db_column='broad_discipline_group', blank=True, null=True)
     intake = models.IntegerField(blank=True, null=True)
     no_of_applicants = models.IntegerField(blank=True, null=True)
@@ -543,24 +543,24 @@ class Scholarship(models.Model):
 
 
 class University(models.Model):
-    aishe_code = models.CharField(max_length=-1)
+    aishe_code = models.CharField(max_length=30)
     id = models.OneToOneField(RefUniversity, models.DO_NOTHING, db_column='id', primary_key=True)
-    address_line1 = models.CharField(max_length=-1)
-    address_line2 = models.CharField(max_length=-1, blank=True, null=True)
+    address_line1 = models.CharField(max_length=250)
+    address_line2 = models.CharField(max_length=250, blank=True, null=True)
     area = models.FloatField(blank=True, null=True)
     city = models.CharField(max_length=-1, blank=True, null=True)
     constructed_area = models.FloatField(blank=True, null=True)
-    district_code = models.CharField(max_length=-1)
+    district_code = models.CharField(max_length=30)
     girl_exclusive = models.BooleanField()
     specialized = models.BooleanField()
     staff_quarter_available = models.BooleanField()
     student_hostel_available = models.BooleanField()
-    location = models.CharField(max_length=-1)
+    location = models.CharField(max_length=100)
     no_of_student_hostel = models.IntegerField()
     no_of_regional_centers = models.IntegerField()
-    other_speciality = models.CharField(max_length=-1, blank=True, null=True)
+    other_speciality = models.CharField(max_length=250, blank=True, null=True)
     state_code = models.ForeignKey(RefDistrict, models.DO_NOTHING, db_column='state_code')
-    website = models.CharField(max_length=-1, blank=True, null=True)
+    website = models.CharField(max_length=250, blank=True, null=True)
     year_of_establishment = models.IntegerField(blank=True, null=True)
     year_when_declared_university = models.IntegerField(blank=True, null=True)
     nodal_officer_id = models.IntegerField()
@@ -572,12 +572,12 @@ class University(models.Model):
     has_other_regular_courses = models.BooleanField()
     constituted_from_colleges = models.BooleanField()
     speciality = models.ForeignKey(RefSpeciality, models.DO_NOTHING, blank=True, null=True)
-    name = models.CharField(max_length=-1)
+    name = models.CharField(max_length=250)
     survey_year = models.IntegerField()
     financial_income_id = models.IntegerField()
     financial_expenditure_id = models.IntegerField()
     infrastructure_id = models.IntegerField()
-    remarks = models.CharField(max_length=-1, blank=True, null=True)
+    remarks = models.CharField(max_length=250, blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
     scholarship = models.ForeignKey(Scholarship, models.DO_NOTHING, blank=True, null=True)
@@ -592,7 +592,7 @@ class University(models.Model):
     has_fellowships = models.BooleanField()
     fellowships_id = models.IntegerField(blank=True, null=True)
     has_other_minority_data = models.BooleanField()
-    block_city_town = models.CharField(max_length=-1, blank=True, null=True)
+    block_city_town = models.CharField(max_length=250, blank=True, null=True)
     is_university_uploaded_act_statues = models.BooleanField(blank=True, null=True)
     is_university_complying_rules = models.BooleanField(blank=True, null=True)
     is_university180_actual_teaching_days = models.BooleanField(blank=True, null=True)
