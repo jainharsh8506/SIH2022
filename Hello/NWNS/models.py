@@ -300,75 +300,6 @@ class Accreditation(models.Model):
         db_table = 'accreditation'
 
 
-class AuthGroup(models.Model):
-    name = models.CharField(unique=True, max_length=150)
-
-    class Meta:
-        managed = True
-        db_table = 'auth_group'
-
-
-class AuthGroupPermissions(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
-
-    class Meta:
-        managed = True
-        db_table = 'auth_group_permissions'
-        unique_together = (('group', 'permission'),)
-
-
-class AuthPermission(models.Model):
-    name = models.CharField(max_length=255)
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
-    codename = models.CharField(max_length=100)
-
-    class Meta:
-        managed = True
-        db_table = 'auth_permission'
-        unique_together = (('content_type', 'codename'),)
-
-
-class AuthUser(models.Model):
-    password = models.CharField(max_length=128)
-    last_login = models.DateTimeField(blank=True, null=True)
-    is_superuser = models.BooleanField()
-    username = models.CharField(unique=True, max_length=150)
-    first_name = models.CharField(max_length=150)
-    last_name = models.CharField(max_length=150)
-    email = models.CharField(max_length=254)
-    is_staff = models.BooleanField()
-    is_active = models.BooleanField()
-    date_joined = models.DateTimeField()
-
-    class Meta:
-        managed = True
-        db_table = 'auth_user'
-
-
-class AuthUserGroups(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-
-    class Meta:
-        managed = True
-        db_table = 'auth_user_groups'
-        unique_together = (('user', 'group'),)
-
-
-class AuthUserUserPermissions(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
-
-    class Meta:
-        managed = True
-        db_table = 'auth_user_user_permissions'
-        unique_together = (('user', 'permission'),)
-
-
 class College(models.Model):
     aishe_code = models.CharField(max_length=50)
     id = models.IntegerField(primary_key=True)
@@ -548,7 +479,7 @@ class University(models.Model):
     address_line1 = models.CharField(max_length=250)
     address_line2 = models.CharField(max_length=250, blank=True, null=True)
     area = models.FloatField(blank=True, null=True)
-    city = models.CharField(max_length=-1, blank=True, null=True)
+    city = models.CharField(max_length=30, blank=True, null=True)
     constructed_area = models.FloatField(blank=True, null=True)
     district_code = models.CharField(max_length=30)
     girl_exclusive = models.BooleanField()
@@ -981,7 +912,7 @@ class EnrolledDistanceStudentUniversity(models.Model):
     id = models.IntegerField(primary_key=True)
     regional_center_name = models.CharField(max_length=250)
     state_code = models.ForeignKey('RefDistrict', models.DO_NOTHING, db_column='state_code')
-    district_code = models.CharField(max_length=-1)
+    district_code = models.CharField(max_length=30)
 
     class Meta:
         managed = True
@@ -1027,7 +958,7 @@ class CollegeInstitution(models.Model):
     student_hostel_available = models.BooleanField()
     no_of_student_hostel = models.IntegerField()
     speciality = models.ForeignKey('RefSpeciality', models.DO_NOTHING, blank=True, null=True)
-    name = models.CharField(max_length=-1)
+    name = models.CharField(max_length=250)
     survey_year = models.IntegerField()
     financial_income_id = models.IntegerField()
     financial_expenditure_id = models.IntegerField()
@@ -1191,6 +1122,33 @@ class CollegeInstitutionFaculty(models.Model):
         db_table = 'college_institution_faculty'
 
 
+class AuthUser(models.Model):
+    password = models.CharField(max_length=128)
+    last_login = models.DateTimeField(blank=True, null=True)
+    is_superuser = models.BooleanField()
+    username = models.CharField(unique=True, max_length=150)
+    first_name = models.CharField(max_length=150)
+    last_name = models.CharField(max_length=150)
+    email = models.CharField(max_length=254)
+    is_staff = models.BooleanField()
+    is_active = models.BooleanField()
+    date_joined = models.DateTimeField()
+
+    class Meta:
+        managed = True
+        db_table = 'auth_user'
+
+
+class DjangoContentType(models.Model):
+    app_label = models.CharField(max_length=100)
+    model = models.CharField(max_length=100)
+
+    class Meta:
+        managed = True
+        db_table = 'django_content_type'
+        unique_together = (('app_label', 'model'),)
+
+
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
     object_id = models.TextField(blank=True, null=True)
@@ -1203,16 +1161,6 @@ class DjangoAdminLog(models.Model):
     class Meta:
         managed = True
         db_table = 'django_admin_log'
-
-
-class DjangoContentType(models.Model):
-    app_label = models.CharField(max_length=100)
-    model = models.CharField(max_length=100)
-
-    class Meta:
-        managed = True
-        db_table = 'django_content_type'
-        unique_together = (('app_label', 'model'),)
 
 
 class DjangoMigrations(models.Model):
@@ -1234,6 +1182,57 @@ class DjangoSession(models.Model):
     class Meta:
         managed = True
         db_table = 'django_session'
+
+
+class AuthGroup(models.Model):
+    name = models.CharField(unique=True, max_length=150)
+
+    class Meta:
+        managed = True
+        db_table = 'auth_group'
+
+class AuthPermission(models.Model):
+    name = models.CharField(max_length=255)
+    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
+    codename = models.CharField(max_length=100)
+
+    class Meta:
+        managed = True
+        db_table = 'auth_permission'
+        unique_together = (('content_type', 'codename'),)
+
+
+class AuthGroupPermissions(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
+    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
+
+    class Meta:
+        managed = True
+        db_table = 'auth_group_permissions'
+        unique_together = (('group', 'permission'),)
+
+
+class AuthUserGroups(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
+
+    class Meta:
+        managed = True
+        db_table = 'auth_user_groups'
+        unique_together = (('user', 'group'),)
+
+
+class AuthUserUserPermissions(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
+
+    class Meta:
+        managed = True
+        db_table = 'auth_user_user_permissions'
+        unique_together = (('user', 'permission'),)
 
 
 
