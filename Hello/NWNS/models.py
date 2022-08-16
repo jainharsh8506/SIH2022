@@ -648,6 +648,356 @@ class UniversityFaculty(models.Model):
         db_table = 'university_faculty'
 
 
+class TeachingStaffSanctionedStrength(models.Model):
+    id = models.IntegerField(primary_key=True)
+    designation = models.ForeignKey(RefTeachingStaffDesignation, models.DO_NOTHING, blank=True, null=True)
+    sanctioned_strength = models.IntegerField(blank=True, null=True)
+    in_position = models.IntegerField(blank=True, null=True)
+    in_position_direct = models.IntegerField(blank=True, null=True)
+    in_position_cas = models.IntegerField(blank=True, null=True)
+    no_of_phd_teachers = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'teaching_staff_sanctioned_strength'
+
+
+class StudentHostel(models.Model):
+    id = models.IntegerField(primary_key=True)
+    intake_capacity = models.IntegerField()
+    name = models.CharField(max_length=-1)
+    students_residing = models.IntegerField()
+    type = models.ForeignKey(RefStudentHostelType, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'student_hostel'
+
+
+class TeachingStaff(models.Model):
+    id = models.IntegerField(primary_key=True)
+    faculty_name = models.CharField(max_length=-1, blank=True, null=True)
+    department_name = models.CharField(max_length=-1, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'teaching_staff'
+
+
+class StandaloneInstitution(models.Model):
+    aishe_code = models.CharField(max_length=-1)
+    id = models.IntegerField(primary_key=True)
+    address_line1 = models.CharField(max_length=-1, blank=True, null=True)
+    address_line2 = models.CharField(max_length=-1, blank=True, null=True)
+    city = models.CharField(max_length=-1, blank=True, null=True)
+    state_code = models.ForeignKey(RefDistrict, models.DO_NOTHING, db_column='state_code', blank=True, null=True)
+    district_code = models.CharField(max_length=-1, blank=True, null=True)
+    website = models.CharField(max_length=-1, blank=True, null=True)
+    area = models.FloatField(blank=True, null=True)
+    constructed_area = models.FloatField(blank=True, null=True)
+    year_of_establishment = models.IntegerField(blank=True, null=True)
+    year_of_recognition = models.IntegerField(blank=True, null=True)
+    nodalofficer_id = models.IntegerField(blank=True, null=True)
+    location = models.CharField(max_length=-1, blank=True, null=True)
+    awards_degree_through_university = models.BooleanField(blank=True, null=True)
+    university_id = models.CharField(max_length=-1, blank=True, null=True)
+    girl_exclusive = models.BooleanField(blank=True, null=True)
+    staff_quarter_available = models.BooleanField(blank=True, null=True)
+    staff_quarter_id = models.IntegerField(blank=True, null=True)
+    student_hostel_available = models.BooleanField(blank=True, null=True)
+    no_of_student_hostel = models.IntegerField(blank=True, null=True)
+    management = models.ForeignKey(RefInstitutionManagement, models.DO_NOTHING, blank=True, null=True)
+    name = models.CharField(max_length=-1, blank=True, null=True)
+    survey_year = models.IntegerField()
+    financial_income_id = models.IntegerField(blank=True, null=True)
+    financial_expenditure_id = models.IntegerField(blank=True, null=True)
+    infrastructure_id = models.IntegerField(blank=True, null=True)
+    remarks = models.CharField(max_length=-1, blank=True, null=True)
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+    scholarship = models.ForeignKey(Scholarship, models.DO_NOTHING, blank=True, null=True)
+    loan = models.ForeignKey(Loan, models.DO_NOTHING, blank=True, null=True)
+    is_accredited = models.BooleanField(blank=True, null=True)
+    is_foreign_students_enrolled = models.BooleanField(blank=True, null=True)
+    offers_scholarship = models.BooleanField(blank=True, null=True)
+    offers_loan = models.BooleanField(blank=True, null=True)
+    offers_distance_programme = models.BooleanField(blank=True, null=True)
+    pin_code = models.IntegerField(blank=True, null=True)
+    has_fellowships = models.BooleanField(blank=True, null=True)
+    fellowships_id = models.IntegerField(blank=True, null=True)
+    ministry_id = models.IntegerField(blank=True, null=True)
+    has_other_minority_data = models.BooleanField(blank=True, null=True)
+    block_city_town = models.CharField(max_length=-1, blank=True, null=True)
+    has_foreign_teachers = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'standalone_institution'
+        unique_together = (('id', 'survey_year'),)
+
+
+class UniversityPrivateStudentsResult(models.Model):
+    university = models.ForeignKey(University, models.DO_NOTHING)
+    survey_year = models.IntegerField()
+    private_students_result = models.ForeignKey(PrivateStudentsResult, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'university_private_students_result'
+
+
+class UniversityStudentHostel(models.Model):
+    university = models.ForeignKey(University, models.DO_NOTHING)
+    student_hostel = models.ForeignKey(StudentHostel, models.DO_NOTHING)
+    survey_year = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'university_student_hostel'
+
+
+class StandaloneInstitutionStudentHostel(models.Model):
+    standalone_institution = models.ForeignKey(StandaloneInstitution, models.DO_NOTHING)
+    student_hostel = models.ForeignKey('StudentHostel', models.DO_NOTHING)
+    survey_year = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'standalone_institution_student_hostel'
+
+
+class StandaloneInstitutionTeachingStaff(models.Model):
+    standalone_institution = models.ForeignKey(StandaloneInstitution, models.DO_NOTHING)
+    survey_year = models.IntegerField()
+    teaching_staff = models.ForeignKey('TeachingStaff', models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'standalone_institution_teaching_staff'
+
+
+class StandaloneInstitutionTeachingStaffSanctionedStrength(models.Model):
+    standalone_institution = models.ForeignKey(StandaloneInstitution, models.DO_NOTHING)
+    survey_year = models.IntegerField()
+    teaching_staff_sanctioned_strength = models.ForeignKey('TeachingStaffSanctionedStrength', models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'standalone_institution_teaching_staff_sanctioned_strength'
+
+
+class TeachingStaffCount(models.Model):
+    id = models.IntegerField(primary_key=True)
+    teaching_staff = models.ForeignKey(TeachingStaff, models.DO_NOTHING, blank=True, null=True)
+    designation = models.ForeignKey(RefTeachingStaffDesignation, models.DO_NOTHING, blank=True, null=True)
+    grade_pay = models.CharField(max_length=-1, blank=True, null=True)
+    selection_mode = models.ForeignKey(RefTeachingStaffSelectionMode, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'teaching_staff_count'
+
+
+class UniversityTeachingStaff(models.Model):
+    university = models.ForeignKey(University, models.DO_NOTHING)
+    survey_year = models.IntegerField()
+    teaching_staff = models.ForeignKey(TeachingStaff, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'university_teaching_staff'
+
+
+class UniversityTeachingStaffSanctionedStrength(models.Model):
+    university = models.ForeignKey(University, models.DO_NOTHING)
+    survey_year = models.IntegerField()
+    teaching_staff_sanctioned_strength = models.ForeignKey(TeachingStaffSanctionedStrength, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'university_teaching_staff_sanctioned_strength'
+
+
+class StandaloneInstitutionAccreditation(models.Model):
+    standalone_institution = models.ForeignKey(StandaloneInstitution, models.DO_NOTHING)
+    survey_year = models.IntegerField()
+    accreditation = models.ForeignKey(Accreditation, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'standalone_institution_accreditation'
+
+
+class StandaloneInstitutionDepartment(models.Model):
+    standalone_institution = models.ForeignKey(StandaloneInstitution, models.DO_NOTHING)
+    department = models.ForeignKey(Department, models.DO_NOTHING)
+    survey_year = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'standalone_institution_department'
+
+
+class StandaloneInstitutionFaculty(models.Model):
+    standalone_institution = models.ForeignKey(StandaloneInstitution, models.DO_NOTHING)
+    faculty = models.ForeignKey(Faculty, models.DO_NOTHING)
+    survey_year = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'standalone_institution_faculty'
+
+
+class Infrastructure(models.Model):
+    id = models.IntegerField(primary_key=True)
+    playground = models.BooleanField(blank=True, null=True)
+    auditorium = models.BooleanField(blank=True, null=True)
+    theatre = models.BooleanField(blank=True, null=True)
+    library = models.BooleanField(blank=True, null=True)
+    laboratory = models.BooleanField(blank=True, null=True)
+    conference_hall = models.BooleanField(blank=True, null=True)
+    health_center = models.BooleanField(blank=True, null=True)
+    gymnasium_fitness_center = models.BooleanField(blank=True, null=True)
+    indoor_stadium = models.BooleanField(blank=True, null=True)
+    common_room = models.BooleanField(blank=True, null=True)
+    computer_center = models.BooleanField(blank=True, null=True)
+    cafeteria = models.BooleanField(blank=True, null=True)
+    guest_house = models.BooleanField(blank=True, null=True)
+    no_of_playgrounds = models.IntegerField(blank=True, null=True)
+    no_of_auditoriums = models.IntegerField(blank=True, null=True)
+    no_of_theatres = models.IntegerField(blank=True, null=True)
+    no_of_libraries = models.IntegerField(blank=True, null=True)
+    no_of_laboratories = models.IntegerField(blank=True, null=True)
+    no_of_conference_halls = models.IntegerField(blank=True, null=True)
+    no_of_health_centers = models.IntegerField(blank=True, null=True)
+    no_of_gymnasim_fitness_centers = models.IntegerField(blank=True, null=True)
+    no_of_indoor_stadiums = models.IntegerField(blank=True, null=True)
+    no_of_common_rooms = models.IntegerField(blank=True, null=True)
+    no_of_computer_centers = models.IntegerField(blank=True, null=True)
+    no_of_cafeteria = models.IntegerField(blank=True, null=True)
+    no_of_guest_houses = models.IntegerField(blank=True, null=True)
+    separate_room_for_girls = models.BooleanField(blank=True, null=True)
+    no_of_separate_rooms_for_girls = models.IntegerField(blank=True, null=True)
+    solar_power_generation = models.BooleanField(blank=True, null=True)
+    connectivity_nkn = models.BooleanField(blank=True, null=True)
+    connectivity_nmeict = models.BooleanField(blank=True, null=True)
+    no_of_books = models.IntegerField(blank=True, null=True)
+    no_of_journals = models.IntegerField(blank=True, null=True)
+    campus_friendly = models.BooleanField(blank=True, null=True)
+    grievance_redressal_mechanism = models.BooleanField(blank=True, null=True)
+    vigilance_cell = models.BooleanField(blank=True, null=True)
+    opportunity_cell = models.BooleanField(blank=True, null=True)
+    separate_toilet_for_disabled_female = models.BooleanField(blank=True, null=True)
+    ramp_attached_to_classroom_library = models.BooleanField(blank=True, null=True)
+    sexual_harassment_cell = models.BooleanField(blank=True, null=True)
+    counselors_for_students = models.BooleanField(blank=True, null=True)
+    clinic_first_aid_room = models.BooleanField(blank=True, null=True)
+    separate_toilet_for_girls = models.BooleanField(blank=True, null=True)
+    skill_development_centre = models.BooleanField(blank=True, null=True)
+    self_defence_class_for_females = models.BooleanField(blank=True, null=True)
+    institution_disaster_management_facilities = models.BooleanField(blank=True, null=True)
+    capacity_building_and_training_aware_programme_conducted = models.BooleanField(blank=True, null=True)
+    vulnerability_assess_checks_made_during_year = models.BooleanField(blank=True, null=True)
+    any_mock_drill_rehearsal_programme_conducted = models.BooleanField(blank=True, null=True)
+    anti_ragging_cell = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'infrastructure'
+
+
+class EnrolledForeignStudentCount(models.Model):
+    id = models.IntegerField(primary_key=True)
+    country = models.ForeignKey('RefCountry', models.DO_NOTHING)
+    programme = models.ForeignKey('RefProgramme', models.DO_NOTHING)
+    discipline = models.CharField(max_length=-1)
+    total = models.IntegerField()
+    girls = models.IntegerField()
+    broad_discipline_group = models.ForeignKey('RefBroadDisciplineGroup', models.DO_NOTHING)
+    level = models.ForeignKey('RefCourseLevel', models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'enrolled_foreign_student_count'
+
+
+class EnrolledStudentCount(models.Model):
+    id = models.IntegerField(primary_key=True)
+    course_mode = models.ForeignKey('RefCourseMode', models.DO_NOTHING, blank=True, null=True)
+    level = models.ForeignKey('RefCourseLevel', models.DO_NOTHING, blank=True, null=True)
+    programme = models.ForeignKey('RefProgramme', models.DO_NOTHING, blank=True, null=True)
+    discipline = models.CharField(max_length=-1, blank=True, null=True)
+    course_type = models.ForeignKey('RefCourseType', models.DO_NOTHING, blank=True, null=True)
+    year = models.CharField(max_length=-1, blank=True, null=True)
+    count_by_category = models.ForeignKey('PersonsCountByCategory', models.DO_NOTHING, blank=True, null=True)
+    broad_discipline_group = models.ForeignKey('RefBroadDisciplineGroup', models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'enrolled_student_count'
+
+
+class ExaminationResult(models.Model):
+    id = models.IntegerField(primary_key=True)
+    course_mode = models.ForeignKey('RefCourseMode', models.DO_NOTHING, blank=True, null=True)
+    course_level = models.ForeignKey('RefCourseLevel', models.DO_NOTHING, blank=True, null=True)
+    programme = models.ForeignKey('RefProgramme', models.DO_NOTHING, blank=True, null=True)
+    discipline = models.CharField(max_length=-1, blank=True, null=True)
+    appeared_total = models.IntegerField(blank=True, null=True)
+    appeared_female = models.IntegerField(blank=True, null=True)
+    passed_total = models.IntegerField(blank=True, null=True)
+    passed_female = models.IntegerField(blank=True, null=True)
+    broad_discipline_group_id = models.CharField(max_length=-1, blank=True, null=True)
+    first_class_passed_total = models.IntegerField(blank=True, null=True)
+    first_class_passed_female = models.IntegerField(blank=True, null=True)
+    course_id = models.IntegerField(blank=True, null=True)
+    examination_result_id = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'examination_result'
+
+
+class FacultyDepartment(models.Model):
+    faculty = models.ForeignKey(Faculty, models.DO_NOTHING)
+    department = models.ForeignKey(Department, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'faculty_department'
+
+
+class UniversityNonTeachingStaffCount(models.Model):
+    university = models.ForeignKey(University, models.DO_NOTHING)
+    survey_year = models.IntegerField()
+    non_teaching_staff_count = models.ForeignKey(NonTeachingStaffCount, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'university_non_teaching_staff_count'
+
+
+class EnrolledDistanceStudentUniversity(models.Model):
+    id = models.IntegerField(primary_key=True)
+    regional_center_name = models.CharField(max_length=-1)
+    state_code = models.ForeignKey('RefDistrict', models.DO_NOTHING, db_column='state_code')
+    district_code = models.CharField(max_length=-1)
+
+    class Meta:
+        managed = False
+        db_table = 'enrolled_distance_student_university'
+
+
+class StandaloneInstitutionNonTeachingStaffCount(models.Model):
+    standalone_institution = models.ForeignKey(StandaloneInstitution, models.DO_NOTHING)
+    survey_year = models.IntegerField()
+    non_teaching_staff_count = models.ForeignKey(NonTeachingStaffCount, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'standalone_institution_non_teaching_staff_count'
+
+
 class CollegeInstitution(models.Model):
     aishe_code = models.CharField(max_length=-1)
     id = models.OneToOneField(College, models.DO_NOTHING, db_column='id', primary_key=True)
@@ -728,16 +1078,6 @@ class CollegeInstitutionDepartment(models.Model):
         db_table = 'college_institution_department'
 
 
-class CollegeInstitutionFaculty(models.Model):
-    college_institution = models.ForeignKey(CollegeInstitution, models.DO_NOTHING, blank=True, null=True)
-    faculty = models.ForeignKey('Faculty', models.DO_NOTHING, blank=True, null=True)
-    survey_year = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'college_institution_faculty'
-
-
 class CollegeInstitutionNonTeachingStaffCount(models.Model):
     college_institution = models.ForeignKey(CollegeInstitution, models.DO_NOTHING)
     survey_year = models.IntegerField()
@@ -768,14 +1108,23 @@ class CollegeInstitutionTeachingStaff(models.Model):
         db_table = 'college_institution_teaching_staff'
 
 
-class CollegeInstitutionTeachingStaffSanctionedStrength(models.Model):
-    college_institution = models.ForeignKey(CollegeInstitution, models.DO_NOTHING)
-    survey_year = models.IntegerField()
-    teaching_staff_sanctioned_strength = models.ForeignKey('TeachingStaffSanctionedStrength', models.DO_NOTHING, blank=True, null=True)
+class EnrolledDistanceStudentUniversityCount(models.Model):
+    enrolled_distance_student_university = models.ForeignKey(EnrolledDistanceStudentUniversity, models.DO_NOTHING)
+    enrolled_student_count_id = models.IntegerField()
 
     class Meta:
         managed = False
-        db_table = 'college_institution_teaching_staff_sanctioned_strength'
+        db_table = 'enrolled_distance_student_university_count'
+
+
+class CourseExaminationResult(models.Model):
+    id = models.IntegerField(primary_key=True)
+    course = models.ForeignKey(Course, models.DO_NOTHING, blank=True, null=True)
+    examination_result = models.ForeignKey('ExaminationResult', models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'course_examination_result'
 
 
 class CourseEnrolledForeignStudentCount(models.Model):
@@ -798,14 +1147,48 @@ class CourseEnrolledStudentCount(models.Model):
         db_table = 'course_enrolled_student_count'
 
 
-class CourseExaminationResult(models.Model):
-    id = models.IntegerField(primary_key=True)
-    course = models.ForeignKey(Course, models.DO_NOTHING, blank=True, null=True)
-    examination_result = models.ForeignKey('ExaminationResult', models.DO_NOTHING, blank=True, null=True)
+class UniversityEnrolledDistanceStudent(models.Model):
+    university = models.ForeignKey(University, models.DO_NOTHING)
+    survey_year = models.IntegerField()
+    enrolled_distance_student_university = models.ForeignKey(EnrolledDistanceStudentUniversity, models.DO_NOTHING)
 
     class Meta:
         managed = False
-        db_table = 'course_examination_result'
+        db_table = 'university_enrolled_distance_student'
+
+
+class EducationalInstitutionCourse(models.Model):
+    institution_category = models.CharField(max_length=-1)
+    institution = models.ForeignKey(CollegeInstitution, models.DO_NOTHING)
+    state_code = models.ForeignKey('RefState', models.DO_NOTHING, db_column='state_code', blank=True, null=True)
+    faculty = models.ForeignKey('Faculty', models.DO_NOTHING, blank=True, null=True)
+    department = models.ForeignKey(Department, models.DO_NOTHING, blank=True, null=True)
+    course = models.ForeignKey(Course, models.DO_NOTHING, blank=True, null=True)
+    survey_year = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'educational_institution_course'
+
+
+class CollegeInstitutionTeachingStaffSanctionedStrength(models.Model):
+    college_institution = models.ForeignKey(CollegeInstitution, models.DO_NOTHING)
+    survey_year = models.IntegerField()
+    teaching_staff_sanctioned_strength = models.ForeignKey('TeachingStaffSanctionedStrength', models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'college_institution_teaching_staff_sanctioned_strength'
+
+
+class CollegeInstitutionFaculty(models.Model):
+    college_institution = models.ForeignKey(CollegeInstitution, models.DO_NOTHING, blank=True, null=True)
+    faculty = models.ForeignKey('Faculty', models.DO_NOTHING, blank=True, null=True)
+    survey_year = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'college_institution_faculty'
 
 
 class DjangoAdminLog(models.Model):
@@ -853,386 +1236,9 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
-class EducationalInstitutionCourse(models.Model):
-    institution_category = models.CharField(max_length=-1)
-    institution = models.ForeignKey(CollegeInstitution, models.DO_NOTHING)
-    state_code = models.ForeignKey('RefState', models.DO_NOTHING, db_column='state_code', blank=True, null=True)
-    faculty = models.ForeignKey('Faculty', models.DO_NOTHING, blank=True, null=True)
-    department = models.ForeignKey(Department, models.DO_NOTHING, blank=True, null=True)
-    course = models.ForeignKey(Course, models.DO_NOTHING, blank=True, null=True)
-    survey_year = models.IntegerField()
 
-    class Meta:
-        managed = False
-        db_table = 'educational_institution_course'
 
 
-class EnrolledDistanceStudentUniversity(models.Model):
-    id = models.IntegerField(primary_key=True)
-    regional_center_name = models.CharField(max_length=-1)
-    state_code = models.ForeignKey('RefDistrict', models.DO_NOTHING, db_column='state_code')
-    district_code = models.CharField(max_length=-1)
 
-    class Meta:
-        managed = False
-        db_table = 'enrolled_distance_student_university'
 
 
-class EnrolledDistanceStudentUniversityCount(models.Model):
-    enrolled_distance_student_university = models.ForeignKey(EnrolledDistanceStudentUniversity, models.DO_NOTHING)
-    enrolled_student_count_id = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'enrolled_distance_student_university_count'
-
-
-class EnrolledForeignStudentCount(models.Model):
-    id = models.IntegerField(primary_key=True)
-    country = models.ForeignKey('RefCountry', models.DO_NOTHING)
-    programme = models.ForeignKey('RefProgramme', models.DO_NOTHING)
-    discipline = models.CharField(max_length=-1)
-    total = models.IntegerField()
-    girls = models.IntegerField()
-    broad_discipline_group = models.ForeignKey('RefBroadDisciplineGroup', models.DO_NOTHING)
-    level = models.ForeignKey('RefCourseLevel', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'enrolled_foreign_student_count'
-
-
-class EnrolledStudentCount(models.Model):
-    id = models.IntegerField(primary_key=True)
-    course_mode = models.ForeignKey('RefCourseMode', models.DO_NOTHING, blank=True, null=True)
-    level = models.ForeignKey('RefCourseLevel', models.DO_NOTHING, blank=True, null=True)
-    programme = models.ForeignKey('RefProgramme', models.DO_NOTHING, blank=True, null=True)
-    discipline = models.CharField(max_length=-1, blank=True, null=True)
-    course_type = models.ForeignKey('RefCourseType', models.DO_NOTHING, blank=True, null=True)
-    year = models.CharField(max_length=-1, blank=True, null=True)
-    count_by_category = models.ForeignKey('PersonsCountByCategory', models.DO_NOTHING, blank=True, null=True)
-    broad_discipline_group = models.ForeignKey('RefBroadDisciplineGroup', models.DO_NOTHING, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'enrolled_student_count'
-
-
-class ExaminationResult(models.Model):
-    id = models.IntegerField(primary_key=True)
-    course_mode = models.ForeignKey('RefCourseMode', models.DO_NOTHING, blank=True, null=True)
-    course_level = models.ForeignKey('RefCourseLevel', models.DO_NOTHING, blank=True, null=True)
-    programme = models.ForeignKey('RefProgramme', models.DO_NOTHING, blank=True, null=True)
-    discipline = models.CharField(max_length=-1, blank=True, null=True)
-    appeared_total = models.IntegerField(blank=True, null=True)
-    appeared_female = models.IntegerField(blank=True, null=True)
-    passed_total = models.IntegerField(blank=True, null=True)
-    passed_female = models.IntegerField(blank=True, null=True)
-    broad_discipline_group_id = models.CharField(max_length=-1, blank=True, null=True)
-    first_class_passed_total = models.IntegerField(blank=True, null=True)
-    first_class_passed_female = models.IntegerField(blank=True, null=True)
-    course_id = models.IntegerField(blank=True, null=True)
-    examination_result_id = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'examination_result'
-
-
-class FacultyDepartment(models.Model):
-    faculty = models.ForeignKey(Faculty, models.DO_NOTHING)
-    department = models.ForeignKey(Department, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'faculty_department'
-
-
-class Infrastructure(models.Model):
-    id = models.IntegerField(primary_key=True)
-    playground = models.BooleanField(blank=True, null=True)
-    auditorium = models.BooleanField(blank=True, null=True)
-    theatre = models.BooleanField(blank=True, null=True)
-    library = models.BooleanField(blank=True, null=True)
-    laboratory = models.BooleanField(blank=True, null=True)
-    conference_hall = models.BooleanField(blank=True, null=True)
-    health_center = models.BooleanField(blank=True, null=True)
-    gymnasium_fitness_center = models.BooleanField(blank=True, null=True)
-    indoor_stadium = models.BooleanField(blank=True, null=True)
-    common_room = models.BooleanField(blank=True, null=True)
-    computer_center = models.BooleanField(blank=True, null=True)
-    cafeteria = models.BooleanField(blank=True, null=True)
-    guest_house = models.BooleanField(blank=True, null=True)
-    no_of_playgrounds = models.IntegerField(blank=True, null=True)
-    no_of_auditoriums = models.IntegerField(blank=True, null=True)
-    no_of_theatres = models.IntegerField(blank=True, null=True)
-    no_of_libraries = models.IntegerField(blank=True, null=True)
-    no_of_laboratories = models.IntegerField(blank=True, null=True)
-    no_of_conference_halls = models.IntegerField(blank=True, null=True)
-    no_of_health_centers = models.IntegerField(blank=True, null=True)
-    no_of_gymnasim_fitness_centers = models.IntegerField(blank=True, null=True)
-    no_of_indoor_stadiums = models.IntegerField(blank=True, null=True)
-    no_of_common_rooms = models.IntegerField(blank=True, null=True)
-    no_of_computer_centers = models.IntegerField(blank=True, null=True)
-    no_of_cafeteria = models.IntegerField(blank=True, null=True)
-    no_of_guest_houses = models.IntegerField(blank=True, null=True)
-    separate_room_for_girls = models.BooleanField(blank=True, null=True)
-    no_of_separate_rooms_for_girls = models.IntegerField(blank=True, null=True)
-    solar_power_generation = models.BooleanField(blank=True, null=True)
-    connectivity_nkn = models.BooleanField(blank=True, null=True)
-    connectivity_nmeict = models.BooleanField(blank=True, null=True)
-    no_of_books = models.IntegerField(blank=True, null=True)
-    no_of_journals = models.IntegerField(blank=True, null=True)
-    campus_friendly = models.BooleanField(blank=True, null=True)
-    grievance_redressal_mechanism = models.BooleanField(blank=True, null=True)
-    vigilance_cell = models.BooleanField(blank=True, null=True)
-    opportunity_cell = models.BooleanField(blank=True, null=True)
-    separate_toilet_for_disabled_female = models.BooleanField(blank=True, null=True)
-    ramp_attached_to_classroom_library = models.BooleanField(blank=True, null=True)
-    sexual_harassment_cell = models.BooleanField(blank=True, null=True)
-    counselors_for_students = models.BooleanField(blank=True, null=True)
-    clinic_first_aid_room = models.BooleanField(blank=True, null=True)
-    separate_toilet_for_girls = models.BooleanField(blank=True, null=True)
-    skill_development_centre = models.BooleanField(blank=True, null=True)
-    self_defence_class_for_females = models.BooleanField(blank=True, null=True)
-    institution_disaster_management_facilities = models.BooleanField(blank=True, null=True)
-    capacity_building_and_training_aware_programme_conducted = models.BooleanField(blank=True, null=True)
-    vulnerability_assess_checks_made_during_year = models.BooleanField(blank=True, null=True)
-    any_mock_drill_rehearsal_programme_conducted = models.BooleanField(blank=True, null=True)
-    anti_ragging_cell = models.BooleanField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'infrastructure'
-
-
-class StandaloneInstitution(models.Model):
-    aishe_code = models.CharField(max_length=-1)
-    id = models.IntegerField(primary_key=True)
-    address_line1 = models.CharField(max_length=-1, blank=True, null=True)
-    address_line2 = models.CharField(max_length=-1, blank=True, null=True)
-    city = models.CharField(max_length=-1, blank=True, null=True)
-    state_code = models.ForeignKey(RefDistrict, models.DO_NOTHING, db_column='state_code', blank=True, null=True)
-    district_code = models.CharField(max_length=-1, blank=True, null=True)
-    website = models.CharField(max_length=-1, blank=True, null=True)
-    area = models.FloatField(blank=True, null=True)
-    constructed_area = models.FloatField(blank=True, null=True)
-    year_of_establishment = models.IntegerField(blank=True, null=True)
-    year_of_recognition = models.IntegerField(blank=True, null=True)
-    nodalofficer_id = models.IntegerField(blank=True, null=True)
-    location = models.CharField(max_length=-1, blank=True, null=True)
-    awards_degree_through_university = models.BooleanField(blank=True, null=True)
-    university_id = models.CharField(max_length=-1, blank=True, null=True)
-    girl_exclusive = models.BooleanField(blank=True, null=True)
-    staff_quarter_available = models.BooleanField(blank=True, null=True)
-    staff_quarter_id = models.IntegerField(blank=True, null=True)
-    student_hostel_available = models.BooleanField(blank=True, null=True)
-    no_of_student_hostel = models.IntegerField(blank=True, null=True)
-    management = models.ForeignKey(RefInstitutionManagement, models.DO_NOTHING, blank=True, null=True)
-    name = models.CharField(max_length=-1, blank=True, null=True)
-    survey_year = models.IntegerField()
-    financial_income_id = models.IntegerField(blank=True, null=True)
-    financial_expenditure_id = models.IntegerField(blank=True, null=True)
-    infrastructure_id = models.IntegerField(blank=True, null=True)
-    remarks = models.CharField(max_length=-1, blank=True, null=True)
-    latitude = models.FloatField(blank=True, null=True)
-    longitude = models.FloatField(blank=True, null=True)
-    scholarship = models.ForeignKey(Scholarship, models.DO_NOTHING, blank=True, null=True)
-    loan = models.ForeignKey(Loan, models.DO_NOTHING, blank=True, null=True)
-    is_accredited = models.BooleanField(blank=True, null=True)
-    is_foreign_students_enrolled = models.BooleanField(blank=True, null=True)
-    offers_scholarship = models.BooleanField(blank=True, null=True)
-    offers_loan = models.BooleanField(blank=True, null=True)
-    offers_distance_programme = models.BooleanField(blank=True, null=True)
-    pin_code = models.IntegerField(blank=True, null=True)
-    has_fellowships = models.BooleanField(blank=True, null=True)
-    fellowships_id = models.IntegerField(blank=True, null=True)
-    ministry_id = models.IntegerField(blank=True, null=True)
-    has_other_minority_data = models.BooleanField(blank=True, null=True)
-    block_city_town = models.CharField(max_length=-1, blank=True, null=True)
-    has_foreign_teachers = models.BooleanField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'standalone_institution'
-        unique_together = (('id', 'survey_year'),)
-
-
-class StandaloneInstitutionAccreditation(models.Model):
-    standalone_institution = models.ForeignKey(StandaloneInstitution, models.DO_NOTHING)
-    survey_year = models.IntegerField()
-    accreditation = models.ForeignKey(Accreditation, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'standalone_institution_accreditation'
-
-
-class StandaloneInstitutionDepartment(models.Model):
-    standalone_institution = models.ForeignKey(StandaloneInstitution, models.DO_NOTHING)
-    department = models.ForeignKey(Department, models.DO_NOTHING)
-    survey_year = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'standalone_institution_department'
-
-
-class StandaloneInstitutionFaculty(models.Model):
-    standalone_institution = models.ForeignKey(StandaloneInstitution, models.DO_NOTHING)
-    faculty = models.ForeignKey(Faculty, models.DO_NOTHING)
-    survey_year = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'standalone_institution_faculty'
-
-
-class StandaloneInstitutionNonTeachingStaffCount(models.Model):
-    standalone_institution = models.ForeignKey(StandaloneInstitution, models.DO_NOTHING)
-    survey_year = models.IntegerField()
-    non_teaching_staff_count = models.ForeignKey(NonTeachingStaffCount, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'standalone_institution_non_teaching_staff_count'
-
-
-class StandaloneInstitutionStudentHostel(models.Model):
-    standalone_institution = models.ForeignKey(StandaloneInstitution, models.DO_NOTHING)
-    student_hostel = models.ForeignKey('StudentHostel', models.DO_NOTHING)
-    survey_year = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'standalone_institution_student_hostel'
-
-
-class StandaloneInstitutionTeachingStaff(models.Model):
-    standalone_institution = models.ForeignKey(StandaloneInstitution, models.DO_NOTHING)
-    survey_year = models.IntegerField()
-    teaching_staff = models.ForeignKey('TeachingStaff', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'standalone_institution_teaching_staff'
-
-
-class StandaloneInstitutionTeachingStaffSanctionedStrength(models.Model):
-    standalone_institution = models.ForeignKey(StandaloneInstitution, models.DO_NOTHING)
-    survey_year = models.IntegerField()
-    teaching_staff_sanctioned_strength = models.ForeignKey('TeachingStaffSanctionedStrength', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'standalone_institution_teaching_staff_sanctioned_strength'
-
-
-class StudentHostel(models.Model):
-    id = models.IntegerField(primary_key=True)
-    intake_capacity = models.IntegerField()
-    name = models.CharField(max_length=-1)
-    students_residing = models.IntegerField()
-    type = models.ForeignKey(RefStudentHostelType, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'student_hostel'
-
-
-class TeachingStaff(models.Model):
-    id = models.IntegerField(primary_key=True)
-    faculty_name = models.CharField(max_length=-1, blank=True, null=True)
-    department_name = models.CharField(max_length=-1, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'teaching_staff'
-
-
-class TeachingStaffCount(models.Model):
-    id = models.IntegerField(primary_key=True)
-    teaching_staff = models.ForeignKey(TeachingStaff, models.DO_NOTHING, blank=True, null=True)
-    designation = models.ForeignKey(RefTeachingStaffDesignation, models.DO_NOTHING, blank=True, null=True)
-    grade_pay = models.CharField(max_length=-1, blank=True, null=True)
-    selection_mode = models.ForeignKey(RefTeachingStaffSelectionMode, models.DO_NOTHING, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'teaching_staff_count'
-
-
-class TeachingStaffSanctionedStrength(models.Model):
-    id = models.IntegerField(primary_key=True)
-    designation = models.ForeignKey(RefTeachingStaffDesignation, models.DO_NOTHING, blank=True, null=True)
-    sanctioned_strength = models.IntegerField(blank=True, null=True)
-    in_position = models.IntegerField(blank=True, null=True)
-    in_position_direct = models.IntegerField(blank=True, null=True)
-    in_position_cas = models.IntegerField(blank=True, null=True)
-    no_of_phd_teachers = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'teaching_staff_sanctioned_strength'
-
-
-class UniversityEnrolledDistanceStudent(models.Model):
-    university = models.ForeignKey(University, models.DO_NOTHING)
-    survey_year = models.IntegerField()
-    enrolled_distance_student_university = models.ForeignKey(EnrolledDistanceStudentUniversity, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'university_enrolled_distance_student'
-
-
-
-
-class UniversityNonTeachingStaffCount(models.Model):
-    university = models.ForeignKey(University, models.DO_NOTHING)
-    survey_year = models.IntegerField()
-    non_teaching_staff_count = models.ForeignKey(NonTeachingStaffCount, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'university_non_teaching_staff_count'
-
-
-class UniversityPrivateStudentsResult(models.Model):
-    university = models.ForeignKey(University, models.DO_NOTHING)
-    survey_year = models.IntegerField()
-    private_students_result = models.ForeignKey(PrivateStudentsResult, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'university_private_students_result'
-
-
-class UniversityStudentHostel(models.Model):
-    university = models.ForeignKey(University, models.DO_NOTHING)
-    student_hostel = models.ForeignKey(StudentHostel, models.DO_NOTHING)
-    survey_year = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'university_student_hostel'
-
-
-class UniversityTeachingStaff(models.Model):
-    university = models.ForeignKey(University, models.DO_NOTHING)
-    survey_year = models.IntegerField()
-    teaching_staff = models.ForeignKey(TeachingStaff, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'university_teaching_staff'
-
-
-class UniversityTeachingStaffSanctionedStrength(models.Model):
-    university = models.ForeignKey(University, models.DO_NOTHING)
-    survey_year = models.IntegerField()
-    teaching_staff_sanctioned_strength = models.ForeignKey(TeachingStaffSanctionedStrength, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'university_teaching_staff_sanctioned_strength'
