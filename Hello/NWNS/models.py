@@ -606,10 +606,10 @@ class University(models.Model):
 
 class RegionalCenter(models.Model):
     id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=-1)
+    name = models.CharField(max_length=250
     university = models.ForeignKey('University', models.DO_NOTHING)
     no_of_study_centers = models.IntegerField(blank=True, null=True)
-    district_code = models.CharField(max_length=-1)
+    district_code = models.CharField(max_length=30)
     state_code = models.ForeignKey(RefDistrict, models.DO_NOTHING, db_column='state_code')
     survey_year = models.IntegerField()
 
@@ -665,7 +665,7 @@ class TeachingStaffSanctionedStrength(models.Model):
 class StudentHostel(models.Model):
     id = models.IntegerField(primary_key=True)
     intake_capacity = models.IntegerField()
-    name = models.CharField(max_length=-1)
+    name = models.CharField(max_length=250)
     students_residing = models.IntegerField()
     type = models.ForeignKey(RefStudentHostelType, models.DO_NOTHING)
 
@@ -676,8 +676,8 @@ class StudentHostel(models.Model):
 
 class TeachingStaff(models.Model):
     id = models.IntegerField(primary_key=True)
-    faculty_name = models.CharField(max_length=-1, blank=True, null=True)
-    department_name = models.CharField(max_length=-1, blank=True, null=True)
+    faculty_name = models.CharField(max_length=100, blank=True, null=True)
+    department_name = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -685,34 +685,34 @@ class TeachingStaff(models.Model):
 
 
 class StandaloneInstitution(models.Model):
-    aishe_code = models.CharField(max_length=-1)
+    aishe_code = models.CharField(max_length=30)
     id = models.IntegerField(primary_key=True)
-    address_line1 = models.CharField(max_length=-1, blank=True, null=True)
-    address_line2 = models.CharField(max_length=-1, blank=True, null=True)
-    city = models.CharField(max_length=-1, blank=True, null=True)
+    address_line1 = models.CharField(max_length=250, blank=True, null=True)
+    address_line2 = models.CharField(max_length=250, blank=True, null=True)
+    city = models.CharField(max_length=100, blank=True, null=True)
     state_code = models.ForeignKey(RefDistrict, models.DO_NOTHING, db_column='state_code', blank=True, null=True)
-    district_code = models.CharField(max_length=-1, blank=True, null=True)
-    website = models.CharField(max_length=-1, blank=True, null=True)
+    district_code = models.CharField(max_length=30, blank=True, null=True)
+    website = models.CharField(max_length=250, blank=True, null=True)
     area = models.FloatField(blank=True, null=True)
     constructed_area = models.FloatField(blank=True, null=True)
     year_of_establishment = models.IntegerField(blank=True, null=True)
     year_of_recognition = models.IntegerField(blank=True, null=True)
     nodalofficer_id = models.IntegerField(blank=True, null=True)
-    location = models.CharField(max_length=-1, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
     awards_degree_through_university = models.BooleanField(blank=True, null=True)
-    university_id = models.CharField(max_length=-1, blank=True, null=True)
+    university_id = models.CharField(max_length=30, blank=True, null=True)
     girl_exclusive = models.BooleanField(blank=True, null=True)
     staff_quarter_available = models.BooleanField(blank=True, null=True)
     staff_quarter_id = models.IntegerField(blank=True, null=True)
     student_hostel_available = models.BooleanField(blank=True, null=True)
     no_of_student_hostel = models.IntegerField(blank=True, null=True)
     management = models.ForeignKey(RefInstitutionManagement, models.DO_NOTHING, blank=True, null=True)
-    name = models.CharField(max_length=-1, blank=True, null=True)
+    name = models.CharField(max_length=250, blank=True, null=True)
     survey_year = models.IntegerField()
     financial_income_id = models.IntegerField(blank=True, null=True)
     financial_expenditure_id = models.IntegerField(blank=True, null=True)
     infrastructure_id = models.IntegerField(blank=True, null=True)
-    remarks = models.CharField(max_length=-1, blank=True, null=True)
+    remarks = models.CharField(max_length=250, blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
     scholarship = models.ForeignKey(Scholarship, models.DO_NOTHING, blank=True, null=True)
@@ -727,7 +727,7 @@ class StandaloneInstitution(models.Model):
     fellowships_id = models.IntegerField(blank=True, null=True)
     ministry_id = models.IntegerField(blank=True, null=True)
     has_other_minority_data = models.BooleanField(blank=True, null=True)
-    block_city_town = models.CharField(max_length=-1, blank=True, null=True)
+    block_city_town = models.CharField(max_length=100, blank=True, null=True)
     has_foreign_teachers = models.BooleanField(blank=True, null=True)
 
     class Meta:
@@ -790,7 +790,7 @@ class TeachingStaffCount(models.Model):
     id = models.IntegerField(primary_key=True)
     teaching_staff = models.ForeignKey(TeachingStaff, models.DO_NOTHING, blank=True, null=True)
     designation = models.ForeignKey(RefTeachingStaffDesignation, models.DO_NOTHING, blank=True, null=True)
-    grade_pay = models.CharField(max_length=-1, blank=True, null=True)
+    grade_pay = models.CharField(max_length=30, blank=True, null=True)
     selection_mode = models.ForeignKey(RefTeachingStaffSelectionMode, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
@@ -910,7 +910,7 @@ class EnrolledForeignStudentCount(models.Model):
     id = models.IntegerField(primary_key=True)
     country = models.ForeignKey('RefCountry', models.DO_NOTHING)
     programme = models.ForeignKey('RefProgramme', models.DO_NOTHING)
-    discipline = models.CharField(max_length=-1)
+    discipline = models.CharField(max_length=30)
     total = models.IntegerField()
     girls = models.IntegerField()
     broad_discipline_group = models.ForeignKey('RefBroadDisciplineGroup', models.DO_NOTHING)
@@ -926,9 +926,9 @@ class EnrolledStudentCount(models.Model):
     course_mode = models.ForeignKey('RefCourseMode', models.DO_NOTHING, blank=True, null=True)
     level = models.ForeignKey('RefCourseLevel', models.DO_NOTHING, blank=True, null=True)
     programme = models.ForeignKey('RefProgramme', models.DO_NOTHING, blank=True, null=True)
-    discipline = models.CharField(max_length=-1, blank=True, null=True)
+    discipline = models.CharField(max_length=30, blank=True, null=True)
     course_type = models.ForeignKey('RefCourseType', models.DO_NOTHING, blank=True, null=True)
-    year = models.CharField(max_length=-1, blank=True, null=True)
+    year = models.CharField(max_length=30, blank=True, null=True)
     count_by_category = models.ForeignKey('PersonsCountByCategory', models.DO_NOTHING, blank=True, null=True)
     broad_discipline_group = models.ForeignKey('RefBroadDisciplineGroup', models.DO_NOTHING, blank=True, null=True)
 
@@ -942,12 +942,12 @@ class ExaminationResult(models.Model):
     course_mode = models.ForeignKey('RefCourseMode', models.DO_NOTHING, blank=True, null=True)
     course_level = models.ForeignKey('RefCourseLevel', models.DO_NOTHING, blank=True, null=True)
     programme = models.ForeignKey('RefProgramme', models.DO_NOTHING, blank=True, null=True)
-    discipline = models.CharField(max_length=-1, blank=True, null=True)
+    discipline = models.CharField(max_length=30, blank=True, null=True)
     appeared_total = models.IntegerField(blank=True, null=True)
     appeared_female = models.IntegerField(blank=True, null=True)
     passed_total = models.IntegerField(blank=True, null=True)
     passed_female = models.IntegerField(blank=True, null=True)
-    broad_discipline_group_id = models.CharField(max_length=-1, blank=True, null=True)
+    broad_discipline_group_id = models.CharField(max_length=30, blank=True, null=True)
     first_class_passed_total = models.IntegerField(blank=True, null=True)
     first_class_passed_female = models.IntegerField(blank=True, null=True)
     course_id = models.IntegerField(blank=True, null=True)
@@ -979,7 +979,7 @@ class UniversityNonTeachingStaffCount(models.Model):
 
 class EnrolledDistanceStudentUniversity(models.Model):
     id = models.IntegerField(primary_key=True)
-    regional_center_name = models.CharField(max_length=-1)
+    regional_center_name = models.CharField(max_length=250)
     state_code = models.ForeignKey('RefDistrict', models.DO_NOTHING, db_column='state_code')
     district_code = models.CharField(max_length=-1)
 
@@ -999,27 +999,27 @@ class StandaloneInstitutionNonTeachingStaffCount(models.Model):
 
 
 class CollegeInstitution(models.Model):
-    aishe_code = models.CharField(max_length=-1)
+    aishe_code = models.CharField(max_length=30)
     id = models.OneToOneField(College, models.DO_NOTHING, db_column='id', primary_key=True)
-    address_line1 = models.CharField(max_length=-1)
-    address_line2 = models.CharField(max_length=-1, blank=True, null=True)
-    city = models.CharField(max_length=-1, blank=True, null=True)
+    address_line1 = models.CharField(max_length=250)
+    address_line2 = models.CharField(max_length=250, blank=True, null=True)
+    city = models.CharField(max_length=100, blank=True, null=True)
     state_code = models.ForeignKey('RefDistrict', models.DO_NOTHING, db_column='state_code')
-    district_code = models.CharField(max_length=-1)
-    website = models.CharField(max_length=-1, blank=True, null=True)
+    district_code = models.CharField(max_length=30)
+    website = models.CharField(max_length=250, blank=True, null=True)
     area = models.FloatField(blank=True, null=True)
     constructed_area = models.FloatField(blank=True, null=True)
     year_of_establishment = models.IntegerField(blank=True, null=True)
     nodalofficer_id = models.IntegerField()
-    university_id = models.CharField(max_length=-1)
-    statutory_body_id = models.CharField(max_length=-1, blank=True, null=True)
-    other_statutory_body = models.CharField(max_length=-1, blank=True, null=True)
+    university_id = models.CharField(max_length=30)
+    statutory_body_id = models.CharField(max_length=30, blank=True, null=True)
+    other_statutory_body = models.CharField(max_length=100, blank=True, null=True)
     year_of_affiliation = models.IntegerField(blank=True, null=True)
-    location = models.CharField(max_length=-1)
+    location = models.CharField(max_length=250)
     autonomous = models.BooleanField()
     management = models.ForeignKey('RefInstitutionManagement', models.DO_NOTHING)
     specialized = models.BooleanField()
-    other_speciality = models.CharField(max_length=-1, blank=True, null=True)
+    other_speciality = models.CharField(max_length=50, blank=True, null=True)
     evening = models.BooleanField()
     girl_exclusive = models.BooleanField()
     staff_quarter_available = models.BooleanField()
@@ -1032,7 +1032,7 @@ class CollegeInstitution(models.Model):
     financial_income_id = models.IntegerField()
     financial_expenditure_id = models.IntegerField()
     infrastructure = models.ForeignKey('Infrastructure', models.DO_NOTHING)
-    remarks = models.CharField(max_length=-1, blank=True, null=True)
+    remarks = models.CharField(max_length=250, blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
     scholarship = models.ForeignKey('Scholarship', models.DO_NOTHING, blank=True, null=True)
@@ -1047,9 +1047,9 @@ class CollegeInstitution(models.Model):
     pin_code = models.IntegerField(blank=True, null=True)
     has_fellowships = models.BooleanField()
     fellowships_id = models.IntegerField(blank=True, null=True)
-    other_affiliated_university_id = models.CharField(max_length=-1, blank=True, null=True)
+    other_affiliated_university_id = models.CharField(max_length=30, blank=True, null=True)
     has_other_minority_data = models.BooleanField()
-    block_city_town = models.CharField(max_length=-1, blank=True, null=True)
+    block_city_town = models.CharField(max_length=250, blank=True, null=True)
     has_foreign_teachers = models.BooleanField()
 
     class Meta:
@@ -1158,7 +1158,7 @@ class UniversityEnrolledDistanceStudent(models.Model):
 
 
 class EducationalInstitutionCourse(models.Model):
-    institution_category = models.CharField(max_length=-1)
+    institution_category = models.CharField(max_length=50)
     institution = models.ForeignKey(CollegeInstitution, models.DO_NOTHING)
     state_code = models.ForeignKey('RefState', models.DO_NOTHING, db_column='state_code', blank=True, null=True)
     faculty = models.ForeignKey('Faculty', models.DO_NOTHING, blank=True, null=True)
