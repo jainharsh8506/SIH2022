@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block head %}
+<style>
+    body {
+    background-image:url("/static/images/bg.jpg");
+    }
+  </style> 
+{% endblock head%}
+{% block title%}
+Home
+{% endblock title %}
+
+{% block body %}
+{% comment %} {% csrf_token %}
+<div class="col-md-6">
+    <div class="form-group">
+      <label for="inputStatus">Type</label>
+      <select id="question-type" class="form-control-sm custom-select">
+        <option selected disabled>Select Type</option>
+        {% for Type in RefInstituteType %}
+        <option value="{{type.id}}">{{type.name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="inputStatus">Name</label>
+      <select id="question-name" class="form-control-sm custom-select" name="name">
+        <option selected disabled>Select Name</option>
+      </select>
+    </div>
+  </div>
+
+
+  {% block javascript %}
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+  <script>
+      $("#question-type").change(function () {
+          const typeId = $(this).val();  // get the selected subject ID from the HTML dropdown list 
+          $.ajax({                       // initialize an AJAX request
+              type: "POST",
+              url: '{% url "get_name_ajax" %}',
+              data: {
+                  'type_id': typeId,       // add the country id to the POST parameters
+                  'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+              },
+              success: function (data) {   // `data` is from `get_topics_ajax` view function
+                  let html_data = '<option value="">---------</option>';
+                  data.forEach(function (data) {
+                      html_data += `<option value="${data.id}">${data.name}</option>`
+                  });
+                  $("#question-name").html(html_data); // replace the contents of the topic input with the data that came from the server
+              }
+          });
+      });
+  </script>
+  {% endblock javascript %}
+
+   {% endcomment %}
+
+{% endblock body %}
+
