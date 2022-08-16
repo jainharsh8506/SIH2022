@@ -17,9 +17,9 @@ class RefBroadDisciplineGroupCategory(models.Model):
 
 
 class RefBroadDisciplineGroup(models.Model):
-    id = models.CharField(primary_key=True, max_length=-1)
+    id = models.CharField(primary_key=True, max_length=30)
     category = models.ForeignKey('RefBroadDisciplineGroupCategory', models.DO_NOTHING)
-    discipline_group = models.CharField(max_length=-1)
+    discipline_group = models.CharField(max_length=250)
 
     class Meta:
         managed = False
