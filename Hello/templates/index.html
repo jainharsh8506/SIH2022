@@ -38,6 +38,24 @@ Home
       </select>
     </div>
   </div>
+
+  {% for college in college %}
+  {% if forloop.counter < 11 %} 
+
+    <div class="col-sm-6">
+  <div class="card" style='width:30rem; allign:centre'>
+    <h5 class="card-header">{{college.name}}</h5>
+    <div class="card-body" style='width:30rem; allign:centre'>
+      <h5 class="card-title">{{college.address_line1}}  {{college.address_line2}} city:{{college.city}} Pincode: {{college.pin_code}}</h5>
+      <p class="card-text">For more information, PLease visit college website</p>
+      <a href="{{college.website}}" class="btn btn-primary" style='width:6rem;'>Website</a>
+    </div>
+  </div>
+</div>
+
+  <br>
+  {% endif %} 
+  {% endfor %}
   {% comment %}
   {% for col in col %}
     {{% col %}}
