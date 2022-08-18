@@ -11,26 +11,39 @@ Home
 {% endblock title %}
 
 {% block body %}
-{% comment %} {% csrf_token %}
+<form action="" method="POST">
+<div class="col-md-6">
+  <div class="form-group">
+    <label for="inputStatus">Type</label>
+    <select id="question-type" class="form-control-sm custom-select"  name="type">
+      <option selected disabled>Select type</option>
+      <option value="College">College</option>
+      <option value="College Institution">College Institution</option>
+      <option value="StandAlone Institution">StandAlone Institution</option>
+    </select>
+  </div>
+</div>
+</form>
+
 <div class="col-md-6">
     <div class="form-group">
-      <label for="inputStatus">Type</label>
-      <select id="question-type" class="form-control-sm custom-select">
-        <option selected disabled>Select Type</option>
-        {% for Type in RefInstituteType %}
-        <option value="{{type.id}}">{{type.name}}</option>
-        {% endfor %}
-      </select>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="form-group">
       <label for="inputStatus">Name</label>
-      <select id="question-name" class="form-control-sm custom-select" name="name">
+      <select id="question-name" class="form-control-sm custom-select" name="results">
         <option selected disabled>Select Name</option>
+        {% if name == "College" %}
+        {% for college in college %}
+        <option value="{{college.name}}">{{college.name}}</option>
+        {% endfor %}
+        {% endif %}
       </select>
     </div>
   </div>
+  {% comment %}
+  {% for col in col %}
+    {{% col %}}
+  {% endfor %}
+  
+ 
 
 
   {% block javascript %}
@@ -53,7 +66,7 @@ Home
                   $("#question-name").html(html_data); // replace the contents of the topic input with the data that came from the server
               }
           });
-      });
+      }); 
   </script>
   {% endblock javascript %}
 

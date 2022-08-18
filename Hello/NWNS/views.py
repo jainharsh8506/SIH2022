@@ -1,4 +1,5 @@
 from http.client import HTTPResponse
+from unicodedata import name
 from django.shortcuts import render, HttpResponse
 from .models import RefInstituteType , College
 from django.http import JsonResponse
@@ -6,7 +7,13 @@ from django.http import JsonResponse
 # Create your views here.
 
 def index(request):
-    return render(request,'index.html')
+    college=College.objects.all()
+    name = request.GET.get('name', None)
+    results = request.GET.get('results', None)
+    col=College.objects.filter(name=results)
+    context={'college':college , 'name':name, 'col':col}
+    
+    return render(request,'index.html',context)
 
 def about(request):
     return render(request,'about.html')
@@ -19,5 +26,6 @@ def standalone(request):
 
 def college_institution(request):
     return render(request,'college_institution.html')
+
 
 
