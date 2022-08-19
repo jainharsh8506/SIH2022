@@ -161,5 +161,15 @@ Home
 /* NOTE : Use web server to view HTML files as real-time update will not work if you directly open the HTML file in the browser. */
 </script>
 
+{% for i in q %}
+{% if forloop.counter < 21 %}
+    {{i.id}}  
+    {{ i.name }}
+    {{ i.discipline}}
+    {{ i.result}}
+    {{ i.course_id}}
+    <br>
+{% endif %}
+{% endfor %}
 {% endblock body %}
 
