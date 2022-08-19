@@ -1,94 +1,153 @@
 {% extends 'base.html' %}
 {% block head %}
+
 <style>
     body {
-    background-image:url("/static/images/bg.jpg");
-    }
+    background-image:url("/static/images/book-with-green-board-background.jpg") ;
+      position: relative;
+      background-attachment:scroll;
+      background-size:100% ;
   </style> 
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  {% comment %}
+	<script>
+	    $(document).ready(function()
+	    {
+	      var $select1=$('#select1');
+	      var $select2=$('#select2');
+	      var $options=$select2.find('option');
+	          $select1.on('change',function()
+	          {
+	              $select2.html($options.filter('[value="'+this.value+'"]'));
+	          }).trigger('change');
+	    });
+	  </script>
+{% endcomment %}
 {% endblock head%}
 {% block title%}
 Home
 {% endblock title %}
 
 {% block body %}
-<form action="" method="POST">
-<div class="col-md-6">
-  <div class="form-group">
-    <label for="inputStatus">Type</label>
-    <select id="question-type" class="form-control-sm custom-select"  name="type">
-      <option selected disabled>Select type</option>
-      <option value="College">College</option>
-      <option value="College Institution">College Institution</option>
-      <option value="StandAlone Institution">StandAlone Institution</option>
-    </select>
-  </div>
-</div>
+<form action="/">
+<label for="inputStatus">Type</label>
+<select id="institution_type" name="inst_type" >
+  <option selected disabled="true">Select Type</option>
+  {% for type in Type %}
+  <option value="{{type.name}}">{{type.name}}</option>
+  {% endfor %}
+</select>
+<input type="submit" value="Go"/>
 </form>
 
-<div class="col-md-6">
-    <div class="form-group">
-      <label for="inputStatus">Name</label>
-      <select id="question-name" class="form-control-sm custom-select" name="results">
-        <option selected disabled>Select Name</option>
-        {% if name == "College" %}
-        {% for college in college %}
-        <option value="{{college.name}}">{{college.name}}</option>
-        {% endfor %}
-        {% endif %}
-      </select>
-    </div>
-  </div>
 
-  {% for college in college %}
-  {% if forloop.counter < 11 %} 
+	<label for="inputStatus">Name</label>
+		<select id="college_inst" name="college_name" >
+			<option selected disabled="true">Select Name</option>
+			{% if ins_type == "College" %}
+			{% for name in coll_name %}
+			<option value="{{name.name}}">{{name.name}}</option>     
+			{% endfor %}
+	{% elif ins_type == "University" %}
+		{% for name in univ_name %}
+		<option value="{{name.name}}">{{name.name}}</option>     
+		{% endfor %}
+	{% elif ins_type == "Standalone Institute" %}
+			{% for name in stand_name %}
+			<option value="{{name.name}}">{{name.name}}</option>     
+			{% endfor %}
+	
+{% else %}
+{% endif %}
+</select>
 
-    <div class="col-sm-6">
-  <div class="card" style='width:30rem; allign:centre'>
-    <h5 class="card-header">{{college.name}}</h5>
-    <div class="card-body" style='width:30rem; allign:centre'>
-      <h5 class="card-title">{{college.address_line1}}  {{college.address_line2}} city:{{college.city}} Pincode: {{college.pin_code}}</h5>
-      <p class="card-text">For more information, PLease visit college website</p>
-      <a href="{{college.website}}" class="btn btn-primary" style='width:6rem;'>Website</a>
-    </div>
-  </div>
-</div>
 
-  <br>
-  {% endif %} 
-  {% endfor %}
+
+{% comment %}
+	<form action="{% url 'university' %}">
+	    <label for="inputStatus">Type</label>
+	    <select id="select1" >
+	      <option selected disabled="true">Select Type</option>
+	      {% for type in Type %}
+	      <option value="{{type.name}}">{{type.name}}</option>
+	      {% endfor %}
+	    </select>
+	
+	      
+	      <label for="inputStatus">Name</label>
+	      <select id="select2" name="colu" >
+	        <option selected disabled="true">Select Name</option>
+	        {% for name in Name %}
+	        {% if forloop.counter < 11 %}
+	        <option value="{{name.name}}">{{name.name}}</option>
+	        {% endif %} 
+	        {% endfor %}
+	      </select>
+	<input type="submit" value="click"/>
+		
+{% endcomment %}
+		
+		  {% comment %}
+	{% for college in college %}
+		  {% if {{college.name}} %} 
+		
+		    <div class="col-sm-6">
+		  <div class="card" style='width:30rem; allign:centre'>
+		    <h5 class="card-header">{{college.name}}</h5>
+		    <div class="card-body" style='width:30rem; allign:centre'>
+		      <h5 class="card-title">{{college.address_line1}}  {{college.address_line2}} city:{{college.city}} Pincode: {{college.pin_code}}</h5>
+		      <p class="card-text">For more information, PLease visit college website</p>
+		      <a href="{{college.website}}" class="btn btn-primary" style='width:6rem;'>Website</a>
+		    </div>
+		  </div>
+		</div>
+		
+		  <br>
+		  {% endif %} 
+		  {% endfor %}
+{% endcomment %}
+	{% comment %}
+	  
+	  {% for col in col %}
+	    {{% col %}}
+	  {% endfor %}
+	  
+	 
+	{% endcomment %}
+	
+	  {% comment %}
+	{% block javascript %}
+	  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	  <script>
+      $("#select2").chained("#select1");
+{% endcomment %}
   {% comment %}
-  {% for col in col %}
-    {{% col %}}
-  {% endfor %}
-  
- 
-
-
-  {% block javascript %}
-  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-  <script>
-      $("#question-type").change(function () {
-          const typeId = $(this).val();  // get the selected subject ID from the HTML dropdown list 
-          $.ajax({                       // initialize an AJAX request
-              type: "POST",
-              url: '{% url "get_name_ajax" %}',
-              data: {
-                  'type_id': typeId,       // add the country id to the POST parameters
-                  'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
-              },
-              success: function (data) {   // `data` is from `get_topics_ajax` view function
-                  let html_data = '<option value="">---------</option>';
-                  data.forEach(function (data) {
-                      html_data += `<option value="${data.id}">${data.name}</option>`
-                  });
-                  $("#question-name").html(html_data); // replace the contents of the topic input with the data that came from the server
-              }
-          });
-      }); 
-  </script>
-  {% endblock javascript %}
-
-   {% endcomment %}
+	      $("#question-type").change(function () {
+	          const typeId = $(this).val();  // get the selected subject ID from the HTML dropdown list 
+	          $.ajax({                       // initialize an AJAX request
+	              type: "POST",
+	              url: '{% url "get_name_ajax" %}',
+	              data: {
+	                  'type_id': typeId,       // add the country id to the POST parameters
+	                  'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+	              },
+	              success: function (data) {   // `data` is from `get_topics_ajax` view function
+	                  let html_data = '<option value="">---------</option>';
+	                  data.forEach(function (data) {
+	                      html_data += `<option value="${data.id}">${data.name}</option>`
+	                  });
+	                  $("#question-name").html(html_data); // replace the contents of the topic input with the data that came from the server
+	              }
+	          });
+	      }); 
+        
+	  </script>
+	  {% endblock javascript %}
+	
+{% endcomment %}
 
    <script type="text/javascript">
     (function(d, m){
@@ -101,5 +160,6 @@ Home
     })(document, window.kommunicate || {});
 /* NOTE : Use web server to view HTML files as real-time update will not work if you directly open the HTML file in the browser. */
 </script>
+
 {% endblock body %}
 

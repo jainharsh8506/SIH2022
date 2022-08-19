@@ -114,8 +114,8 @@ class RefExaminationSystem(models.Model):
 
 
 class RefInstituteType(models.Model):
-    id = models.CharField(primary_key=True, max_length=30)
-    name = models.CharField(max_length=250)
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=250, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -1122,6 +1122,14 @@ class CollegeInstitutionFaculty(models.Model):
         db_table = 'college_institution_faculty'
 
 
+class InstituteTypeName(models.Model):
+    aishe_code = models.CharField(max_length=30, blank=True, primary_key=True)
+    id = models.ForeignKey('RefInstituteType', models.DO_NOTHING, db_column='id', blank=True, null=True)
+    name = models.CharField(max_length=250, blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'institute_type_name'
 
 
 
