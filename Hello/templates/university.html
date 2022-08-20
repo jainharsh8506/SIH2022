@@ -1,10 +1,50 @@
 {% extends 'base.html' %}
+{% block head %}
 
+<style>
+    body {
+    background-image:url("/static/images/book-with-green-board-background.jpg") ;
+      position: relative;
+      background-attachment:scroll;
+      background-size:100% ;
+  </style> 
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{% endblock head%}
 {% block title%}
 University
 {% endblock title %}
 
 {% block body %}
-{{colu}}
+<form action="/">
+	<label for="inputStatus">Name</label>
+			<select id="university_inst" name="university_name" >
+			<option selected disabled="true">Select Name</option>
+			{% for name in univ_name %}
+			<option value="{{name.name}}">{{name.name}}</option>     
+			{% endfor %}
+			</select>
+			<input type="submit" value="Go"/>
+</form>
+
+{% for name in univ_name %}
+{% if name.name == university_name %} 
+<center>
+<div class="col-sm-6">
+<div class="card" style='width:30rem; allign:centre'>
+<h5 class="card-header">{{name.name}}</h5>
+<div class="card-body" style='width:30rem; allign:centre'>
+  <h5 class="card-title">{{name.address_line1}}  {{name.address_line2}} city:{{name.city}} Pincode: {{name.pin_code}}</h5>
+  <p class="card-text">For more information, PLease visit college website</p>
+  <a href="{{name.website}}" class="btn btn-primary" style='width:6rem;'>Website</a>
+</div>
+</div>
+</div>
+</center>
+{% endif %}
+{% endfor %}
+
+
 {% endblock body %}
 
