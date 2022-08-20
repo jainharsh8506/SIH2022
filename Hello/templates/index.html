@@ -12,15 +12,60 @@ Home
 
 {% block body %}
 
-{% for i in q %}
+{% for i in p %}
+{% if forloop.counter < 21 %}
+    {{i.id}}  
+    {{ i.name }}
+    {{ i.accreditation_id}}
+    {{i.survey_year}}
+    {{i.accreditation_body}}
+    {{i.score}}
+    {{i.max_score}}
+    {{i.result}}
+    <br>
+    {% endif %}
+    {% endfor %}
+
+{% for i in dataframe %}
+{% if forloop.counter < 21 %}
+    {{i.id}}  
+    {{ i.name }}
+    {{ i.no_of_books}}
+    {{i.no_of_journals}}
+    <br>
+    {% endif %}
+    {% endfor %}
+
+{% for i in df %}
+{% if forloop.counter < 21 %}
+    {{i.id}}  
+    {{ i.name }}
+    {{ i.infrastructure_id}}
+    <br>
+    {% endif %}
+    {% endfor %}
+
+    {% for i in r %}
 {% if forloop.counter < 21 %}
     {{i.id}}  
     {{ i.name }}
     {{ i.discipline}}
-    {{ i.result}}
-    {{ i.course_id}}
+    {{i.result}}
+    {{i.course_id}}
     <br>
-{% endif %}
-{% endfor %}
+    {% endif %}
+    {% endfor %}
+
+   {% for i in q %}
+        {% if forloop.counter < 21 %}
+            {{i.id}}  
+            {{ i.name }}
+            {{ i.infrastructure_id}}
+            <br>
+    {% endif %}
+    {% endfor %}
+
+
 {% endblock body %}
+
 
