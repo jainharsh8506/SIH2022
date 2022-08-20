@@ -5,6 +5,7 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = True` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
+from re import T
 from django.db import models
 
 class RefBroadDisciplineGroupCategory(models.Model):
@@ -874,15 +875,16 @@ class ExaminationResult(models.Model):
     course_level = models.ForeignKey('RefCourseLevel', models.DO_NOTHING, blank=True, null=True)
     programme = models.ForeignKey('RefProgramme', models.DO_NOTHING, blank=True, null=True)
     discipline = models.CharField(max_length=30, blank=True, null=True)
-    appeared_total = models.IntegerField(blank=True, null=True)
+    appeared_total = models.FloatField(blank=True, null=True)
     appeared_female = models.IntegerField(blank=True, null=True)
-    passed_total = models.IntegerField(blank=True, null=True)
+    passed_total = models.FloatField(blank=True, null=True)
     passed_female = models.IntegerField(blank=True, null=True)
     broad_discipline_group_id = models.CharField(max_length=30, blank=True, null=True)
     first_class_passed_total = models.IntegerField(blank=True, null=True)
     first_class_passed_female = models.IntegerField(blank=True, null=True)
     course_id = models.IntegerField(blank=True, null=True)
     examination_result_id = models.IntegerField(blank=True, null=True)
+    result = models.FloatField(blank=True,null=True)
 
     class Meta:
         managed = True
