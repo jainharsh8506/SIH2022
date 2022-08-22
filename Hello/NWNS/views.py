@@ -23,10 +23,6 @@ def index(request):
     context={'standalone_name':standalone_name ,'university_name':university_name, 'q':q,'coll_name':college, 'Type':institute_type, 'ins_type':insti_type, 'univ_name':university, 'stand_name':standalone, 'college_name':college_name}    
     return render(request,'index.html',context)
 
-def index(request):
-    college_institution_result=CollegeInstitution.objects.raw(' SELECT college_institution.id, college_institution.name, course.discipline,examination_result.result, educational_institution_course.course_id FROM college_institution , course, educational_institution_course, examination_result WHERE (educational_institution_course.course_id= examination_result.course_id) AND (examination_result.course_id=course.id) AND (educational_institution_course.institution_id= college_institution.id) ORDER BY result DESC');
-    context={'college_institution_resul': college_institution_result}
-    return render(request,'index.html',context)
 
 def index(request):
     university_accreditation=University.objects.raw(' SELECT university_accreditation.university_id,university_accreditation.accreditation_id,university_accreditation.survey_year,accreditation.accreditation_body,accreditation.score,accreditation.max_score,(accreditation.score/accreditation.max_score)*100 AS result, FROM  university_accreditation,accreditation WHERE (university_accreditation.accreditation_id = accreditation.id) AND (_accreditation.id=college_institution.accreditation) ORDER BY result DESC') 
@@ -97,5 +93,7 @@ def standalone(request):
 def college_institution(request):
     college=CollegeInstitution.objects.all()
     college_name= request.GET.get('college_name')
-    context={'coll_name':college, 'college_name':college_name}    
+    college_institution_result=CollegeInstitution.objects.raw(' SELECT college_institution.id, college_institution.name, course.discipline,examination_result.result, educational_institution_course.course_id FROM college_institution , course, educational_institution_course, examination_result WHERE (educational_institution_course.course_id= examination_result.course_id) AND (examination_result.course_id=course.id) AND (educational_institution_course.institution_id= college_institution.id) ORDER BY result DESC');
+    college_exam1=request.GET.get('college_exam')
+    context={'college_exam':college_exam1, 'coll_name':college, 'college_name':college_name, 'college_institution_result': college_institution_result}    
     return render(request,'college_institution.html',context)

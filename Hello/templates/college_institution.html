@@ -47,8 +47,7 @@ College Institution
 <select id="col_accreditation" name="college_accreditation" >
 <button type="button" class="btn btn-primary btn-lg">Accreditation</button>
 </select>
-<select id="col_exam_result" name="college_exam" >
-<button type="button" class="btn btn-primary btn-lg">Examination Result</button>
+
 </select>
 <select id="col_infra" name="college_infra" >
 <button type="button" class="btn btn-primary btn-lg">Infrastructure</button>
@@ -56,5 +55,42 @@ College Institution
 <select id="col_journals" name="college_journal" >
 <button type="button" class="btn btn-primary btn-lg">Journals</button>
 </select>
+
+<form action="/">
+	<label for="inputStatus">Type</label>
+	<select id="col_exam_result" name="college_exam" >
+	  
+	  <option value="examresult">Exam result</option>
+	  
+	</select>
+	<input type="submit" value="Go"/>
+	</form>
+
+{% if college_exam == "examresult" %}	
+{% for name in college_institution_resul %}
+{% if forloop.counter < 21 %}
+		    <div class="col-sm-6">
+		  <div class="card" style='width:30rem; allign:centre'>
+		    <h5 class="card-header">{{name.id}}  {{name.name}}</h5>
+		    <div class="card-body" style='width:30rem; allign:centre'>
+		      <h5 class="card-title">Discipline: {{name.discipline}} Result:{{name.result}} Course_Id{{name.course_id}}</h5>
+		      </div>
+		  </div>
+		</div>
+		{% endif %}
+{% endfor %}
+{% endif %}
+
+
+{% for i in college_exam %}
+{% if forloop.counter < 10 %}
+{{i.id}}
+{{i.name}}
+{{i.discipline}}
+{{i.result}}
+{{i.course_id}}
+<br>
+{% endif %}
+{% endfor %}
 {% endblock body %}
 
