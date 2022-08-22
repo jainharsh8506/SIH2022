@@ -1134,8 +1134,14 @@ class InstituteTypeName(models.Model):
         db_table = 'institute_type_name'
 
 
+    
 
+class Form(models.Model):
+    institution_type = models.ForeignKey('RefInstituteType', models.DO_NOTHING)
+    name = models.CharField(max_length=250)
 
+    class Meta:
+        managed = True
+        db_table = 'form'
 
-
-
+    
