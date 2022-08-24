@@ -4,7 +4,7 @@ from http.client import HTTPResponse
 from django.shortcuts import render, HttpResponse
 from .models import CollegeInstitution, CollegeInstitutionAccreditation, RefInstituteType, StandaloneInstitution, University
 from django.http import JsonResponse
-
+import pandas as pd
 # Create your views here.
 
 def index(request):
@@ -97,3 +97,52 @@ def college_institution(request):
     college_exam1=request.GET.get('college_exam')
     context={'college_exam':college_exam1, 'coll_name':college, 'college_name':college_name, 'college_institution_result': college_institution_result}    
     return render(request,'college_institution.html',context)
+
+def about(request):
+    return render(request,'about.html')
+
+def contact(request):
+    return render(request,'contact.html')
+
+def courses(request):
+    return render(request,'courses.html')
+
+
+def accreditation_infrastructure(request):
+    df_accr= pd.read_csv("static/csv/accreditation.csv")
+    df_uni_accr=pd.read_csv("static/csv/university_accreditation.csv")
+    df_uni_accr_accr=pd.merge(df_accr,df_uni_accr,left_on='id',right_on='accreditation_id',how='inner').drop(['id'],axis=1)
+    df_uni=pd.read_csv("static/csv/university.csv")
+    df_uni_accr_merge=pd.merge(df_uni_accr_accr,df_uni,left_on='university_id',right_on='id',how='inner').drop(['id'],axis=1)
+    df_uni_accr_merge['percentage']=(df_uni_accr_merge['score'] / df_uni_accr_merge['max_score'])*100
+    df_uni_accr_merge['score'].fillna(1,inplace= True)
+    df_uni_accr_merge['max_score'].fillna(1,inplace= True)
+    df_uni_accr_merge['percentage'].fillna(1,inplace= True)
+    df_uni_accr_2019=df_uni_accr_merge[['university_id','name','aishe_code','accreditation_body','survey_year_x','has_score','score','max_score','percentage','infrastructure_id']]
+    df_uni_accr_2019_sort=df_uni_accr_2019.sort_values(by='percentage',ascending=False)
+    df_infr=pd.read_csv("static/csv/infrastructure.csv")
+    df_uni_accr_infr=pd.merge(df_uni_accr_2019_sort,df_infr,left_on='infrastructure_id',right_on='id',how='inner').drop(['id'],axis=1)
+    df_uni_accr_infrastructure=df_uni_accr_infr[['university_id','name','aishe_code','accreditation_body','survey_year_x','has_score',
+                                             'score','max_score','percentage','infrastructure_id','playground','library','connectivity_nkn',
+                                             'laboratory','indoor_stadium','cafeteria','computer_center','campus_friendly']]
+    df_uni_accr_infrastructure.playground = df_uni_accr_infrastructure.playground.replace({True:1,False:0})
+    df_uni_accr_infrastructure.library = df_uni_accr_infrastructure.playground.replace({True:1,False:0})
+    df_uni_accr_infrastructure.connectivity_nkn = df_uni_accr_infrastructure.connectivity_nkn.replace({True:1,False:0})
+    df_uni_accr_infrastructure.laboratory = df_uni_accr_infrastructure.laboratory.replace({True:1,False:0})
+    df_uni_accr_infrastructure.indoor_stadium = df_uni_accr_infrastructure.indoor_stadium.replace({True:1,False:0})
+    df_uni_accr_infrastructure.cafeteria = df_uni_accr_infrastructure.cafeteria.replace({True:1,False:0})
+    df_uni_accr_infrastructure.computer_center = df_uni_accr_infrastructure.computer_center.replace({True:1,False:0})
+    df_uni_accr_infrastructure.campus_friendly = df_uni_accr_infrastructure.campus_friendly.replace({True:1,False:0})
+    df_filtered_infra= df_uni_accr_infrastructure[['university_id','infrastructure_id','playground','library','connectivity_nkn',	'laboratory','indoor_stadium','cafeteria','computer_center',	'campus_friendly']]
+    #df_filtered_infra['infra_count']=df_filtered_infra.playground + df_filtered_infra.library + df_filtered_infra.connectivity_nkn + df_filtered_infra.indoor_stadium + df_filtered_infra.laboratory + df_filtered_infra.cafeteria + df_filtered_infra.computer_center + df_filtered_infra.campus_friendly
+    #find_infra=['playground','library','laboratory','indoor_stadium','connectivity_nkn','cafeteria','computer_center','campus_friendly']
+    #for i in range(len(find_infra)):
+    #    print(find_infra[i])
+    #df_filtered_infra[find_infra].sum(axis=1)
+    #def dynamic_infra_sum(df_filtered_infra,find_infra):
+    #    return df_filtered_infra[find_infra].sum(axis=1)
+    #df_uni_accr_infrastructure['infra_count']=dynamic_infra_sum(df_uni_accr_infrastructure,find_infra)
+    #df_uni_accr_infrastructure_sort=df_uni_accr_infrastructure.sort_values(['percentage','infra_count'],ascending=False)
+    obje=df_filtered_infra.to_html()
+    context={'obje':obje}    
+    return HttpResponse(obje)
