@@ -5,6 +5,7 @@ from django.shortcuts import render, HttpResponse
 from .models import CollegeInstitution, CollegeInstitutionAccreditation, RefInstituteType, StandaloneInstitution, University
 from django.http import JsonResponse
 import pandas as pd
+from neww import hdd
 # Create your views here.
 
 def index(request):
@@ -100,15 +101,17 @@ def placement_standalone_institution(request):
 def placement_university(request):
     return render(request,'accreditation_university.html')
 
-def all_college_institution(request):
-    return render(request,'all_college_institution.html')
+def choose_multiple_parameters_college_institution(request):
+    return render(request,'choose_multiple_parameters_college_institution.html')
 
-def all_standalone_institution(request):
-    return render(request,'all_standalone_institution.html')
+def choose_multiple_parameters_standalone_institution(request):
+    return render(request,'choose_multiple_parameters_standalone_institution.html')
 
-def all_university(request):
-    return render(request,'all_university.html')
+def choose_multiple_parameters_university(request):
+    return render(request,'choose_multiple_parameters_university.html')
 
+def start(request):
+    return render(request,'start.html')
 
 def accreditation_infrastructure(request):
     find_infra=['playground','library','laboratory','indoor_stadium','connectivity_nkn','cafeteria','computer_center','campus_friendly']
@@ -156,5 +159,7 @@ def accreditation_infrastructure(request):
     df_uni_accr_infrastructure_sort.computer_center = df_uni_accr_infrastructure_sort.computer_center.replace({1:'Yes',0:'No'})
     df_uni_accr_infrastructure_sort.campus_friendly = df_uni_accr_infrastructure_sort.campus_friendly.replace({1:'Yes',0:'No'})
     obje=df_uni_accr_infrastructure_sort.to_html()
+    df=hdd()
+    ffd= df.to_html()
     context={'obje':obje}    
-    return HttpResponse(obje)
+    return HttpResponse(ffd)
