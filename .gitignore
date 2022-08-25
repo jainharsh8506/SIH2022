@@ -1,2 +1,8 @@
+Hello/static/csv/2018
+*.csv
+Hello/static/csv/2019
+*.csv
+Hello/static/csv/2017
+*.csv
 Hello/static/csv/
-.csv
+*.csv

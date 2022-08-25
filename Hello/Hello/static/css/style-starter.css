@@ -7237,8 +7237,8 @@ a.text-dark:hover, a.text-dark:focus {
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('..static/fonts/fontawesome-webfont.eot?v=4.7.0');
-  src: url('..static/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0')  format("embedded-opentype"), url('..static/fonts/fontawesome-webfont.woff2?v=4.7.0') format("woff2"), url('..static/fonts/fontawesome-webfont.woff?v=4.7.0') format("woff"), url('..staic/fonts/fontawesome-webfont.ttf?v=4.7.0') format("truetype"), url('..static/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format("svg");
+  src: url('static/fonts/fontawesome-webfont.eot');
+  src: url('static/fonts/fontawesome-webfont.eot')  format("embedded-opentype"), url('static/fonts/fontawesome-webfont.woff2') format("woff2"), url('static/fonts/fontawesome-webfont.woff') format("woff"), url('staic/fonts/fontawesome-webfont.ttf') format("truetype"), url('static/fonts/fontawesome-webfont.svg #fontawesomeregular') format("svg");
   font-weight: normal;
   font-style: normal; }
 
