@@ -96,54 +96,176 @@
     </div>
 </section>
 <!-- //about breadcrumb -->
-<section class="w3l-courses">
-    <div class="blog pb-5" id="courses">
-        <div class="container py-lg-5 py-md-4 py-2">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 item">
-                    <div class="card">
-                        <div class="card-header p-0 position-relative">
-                            <a href="#course-single" class="zoom d-block">
-                                <img class="card-img-bottom d-block" src="static/images/c1.jpg"
-                                    alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="card-body course-details">
-                            <a href="2019_infrastructure_standalone_Institution.html" class="course-desc">Year 2019
-                            </a>
-                        </div>
-                    </div>
-                </div>
+{% comment %}
+	<section class="w3l-courses">
+	    <div class="blog pb-5" id="courses">
+	        <div class="container py-lg-5 py-md-4 py-2">
+	            <div class="row">
+	                <div class="col-lg-4 col-md-6 item">
+	                    <div class="card">
+	                        <div class="card-header p-0 position-relative">
+	                            <a href="#course-single" class="zoom d-block">
+	                                <img class="card-img-bottom d-block" src="static/images/c1.jpg"
+	                                    alt="Card image cap">
+	                            </a>
+	                        </div>
+	                        <div class="card-body course-details">
+	                            <a href="2019_infrastructure_standalone_Institution.html" class="course-desc">Year 2019
+	                            </a>
+	                        </div>
+	                    </div>
+	                </div>
+	
+	                <div class="col-lg-4 col-md-6 item mt-md-0 mt-5">
+	                    <div class="card">
+	                        <div class="card-header p-0 position-relative">
+	                            <a href="#course-single" class="zoom d-block">
+	                                <img class="card-img-bottom d-block" src="static/images/c2.jpg"
+	                                    alt="Card image cap">
+	                            </a>
+	                        </div>
+	                        <div class="card-body course-details">
+	                            <a href="2018_infrastructure_standalone_Institution.html" class="course-desc">Year 2018</a>
+	                        </div>
+	                    </div>
+	                </div>
+	
+	                <div class="col-lg-4 col-md-6 item mt-lg-0 mt-5">
+	                    <div class="card">
+	                        <div class="card-header p-0 position-relative">
+	                            <a href="#course-single" class="zoom d-block">
+	                                <img class="card-img-bottom d-block" src="static/images/c3.jpg"
+	                                    alt="Card image cap">
+	                            </a>
+	                        </div>
+	                        <div class="card-body course-details">
+	                            <a href="2017_infrastructure_standalone_Institution.html" class="course-desc">Year 2017</a>
+	                        </div>
+	                    </div>
+	                </div>
+	                </div>
+	</section>
+	
+{% endcomment %}
+<h1>Top 10 StandAlone Institutions according to Accreditation</h1>
+<form action="/infrastructure_standalone_institution.html">
+  <label for="inputStatus">Type</label>
+  <select id="institution_type" name="year_type" >
+    <option selected disabled="true">Select Year</option>
+    <option value="2019">2019</option>
+    <option value="2018">2018</option>
+    <option value="2017">2017</option>
+  </select>
+  <input type="submit" value="Go"/>
+  </form>
+  {% if year_type == "2019" %}
+  <h3>Year:2019</h3>
+  <table class="table">
+    <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Aishe Code</th>
+          <th>Playground</th>
+          <th>Library</th>
+          <th>Internet Connectivity</th>
+          <th>Indoor Stadium</th>
+          <th>Cafeteria</th>
+          <th>Computer Center</th>
+          <th>Campus Friendly</th>
+          <th>Total Infrastructure</th>
+        </tr>
+      </thead>
+        {% for i in univacc2019 %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{i.name}}</td>
+          <td>{{i.aishe_code}}</td>
+          <td>{{i.Playground}}</td>
+          <td>{{i.Library}}</td>
+          <td>{{i.Internet_Connectivity}}</td>
+          <td>{{i.Indoor_Stadium}}</td>
+          <td>{{i.Cafeteria}}</td>
+          <td>{{i.Computer_Center}}</td>
+          <td>{{i.Campus_Friendly}}</td>
+          <td>{{i.Total_Infrastructure}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+	{% elif year_type == "2018" %}
+  <h3>Year:2018</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Name</th>
+        <th>Aishe Code</th>
+        <th>Playground</th>
+        <th>Library</th>
+        <th>Internet Connectivity</th>
+        <th>Indoor Stadium</th>
+        <th>Cafeteria</th>
+        <th>Computer Center</th>
+        <th>Campus Friendly</th>
+        <th>Total Infrastructure</th>
+      </tr>
+    </thead>
+      {% for i in univacc2018 %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.aishe_code}}</td>
+        <td>{{i.Playground}}</td>
+        <td>{{i.Library}}</td>
+        <td>{{i.Internet_Connectivity}}</td>
+        <td>{{i.Indoor_Stadium}}</td>
+        <td>{{i.Cafeteria}}</td>
+        <td>{{i.Computer_Center}}</td>
+        <td>{{i.Campus_Friendly}}</td>
+        <td>{{i.Total_Infrastructure}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+         
+	{% elif year_type == "2017" %}
+  <h3>Year:2017</h3>
+			<table class="table">
+        <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Aishe Code</th>
+          <th>Playground</th>
+          <th>Library</th>
+          <th>Internet Connectivity</th>
+          <th>Indoor Stadium</th>
+          <th>Cafeteria</th>
+          <th>Computer Center</th>
+          <th>Campus Friendly</th>
+          <th>Total Infrastructure</th>
+        </tr>
+      </thead>
+        {% for i in univacc2017 %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{i.name}}</td>
+          <td>{{i.aishe_code}}</td>
+          <td>{{i.Playground}}</td>
+          <td>{{i.Library}}</td>
+          <td>{{i.Internet_Connectivity}}</td>
+          <td>{{i.Indoor_Stadium}}</td>
+          <td>{{i.Cafeteria}}</td>
+          <td>{{i.Computer_Center}}</td>
+          <td>{{i.Campus_Friendly}}</td>
+          <td>{{i.Total_Infrastructure}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+           
+	
+{% else %}
+{% endif %}
 
-                <div class="col-lg-4 col-md-6 item mt-md-0 mt-5">
-                    <div class="card">
-                        <div class="card-header p-0 position-relative">
-                            <a href="#course-single" class="zoom d-block">
-                                <img class="card-img-bottom d-block" src="static/images/c2.jpg"
-                                    alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="card-body course-details">
-                            <a href="2018_infrastructure_standalone_Institution.html" class="course-desc">Year 2018</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 item mt-lg-0 mt-5">
-                    <div class="card">
-                        <div class="card-header p-0 position-relative">
-                            <a href="#course-single" class="zoom d-block">
-                                <img class="card-img-bottom d-block" src="static/images/c3.jpg"
-                                    alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="card-body course-details">
-                            <a href="2017_infrastructure_standalone_Institution.html" class="course-desc">Year 2017</a>
-                        </div>
-                    </div>
-                </div>
-                </div>
-</section>
 <!-- footer -->
 <section class="w3l-footer-29-main">
   <div class="footer-29 py-5">
