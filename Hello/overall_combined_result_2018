@@ -1,0 +1,6 @@
+,university_id,name,state_code,department_id,discipline,faculty_id,course_id,survey_year,examination_result_id,infra_count,infrastructure,percentage,pass_percentage,combined,user_defined_score
+17416,37,"Sri Venkateswara University, Tirupathy",28,,Computer Science,68204.0,1965010,2018,1803426,8,100.0,100.0,100.0,100.0,100.0
+23903,35,"Sri Satya Sai Institute of Higher Learning, Anantpur",28,,Computer Science,68934.0,1986009,2018,1822299,8,100.0,100.0,100.0,100.0,100.0
+17462,37,"Sri Venkateswara University, Tirupathy",28,,Computer Science,68203.0,1964998,2018,1803414,8,100.0,100.0,100.0,100.0,100.0
+31299,153,"Veer Narmad South Gujarat University, Surat",24,1773441.0,Computer Science,62551.0,1860642,2018,1626826,8,100.0,96.66666666666667,100.0,98.8888888888889,99.33333333333334
+20921,404,"Jyoti Vidyapeeth Women's University, Jaipur",8,,Computer Science,63461.0,1855234,2018,1699038,8,100.0,95.0,100.0,98.33333333333333,99.0

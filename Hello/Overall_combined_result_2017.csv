@@ -1,0 +1,11 @@
+,university_id,name,state_code,department_id,discipline,faculty_id,course_id,survey_year,examination_result_id,infra_count,infrastructure,percentage,pass_percentage,combined,user_defined_score
+29973,35,"Sri Satya Sai Institute of Higher Learning, Anantpur",28,,Computer Science,57528.0,1511973,2017,1363739,8,100.0,100.0,100.0,100.0,100.0
+1345,500,"Banaras Hindu University, Banaras",9,1626515.0,Computer Science,61655.0,1716514,2017,1558374,8,100.0,100.0,96.0,98.66666666666667,98.8
+17535,30,"Rastriya Sanskrit Vidyapeeth, Tirupathi",28,1617938.0,Computer Science,61420.0,1702064,2017,1549912,8,100.0,92.75,100.0,97.58333333333333,98.55
+3609,435,"Alagappa University, Alagappa Nagar, Karaikudi",33,,Computer Science,59083.0,1614416,2017,1465115,8,100.0,91.0,100.0,97.0,98.2
+3772,435,"Alagappa University, Alagappa Nagar, Karaikudi",33,,Computer Science,59083.0,1614451,2017,1465149,8,100.0,91.0,100.0,97.0,98.2
+2836,366,"Utkal University, Bhubaneswar",21,,Computer Science,61799.0,1715936,2017,1562308,8,100.0,88.25,100.0,96.08333333333333,97.65
+2838,366,"Utkal University, Bhubaneswar",21,,Computer Science,61799.0,1715952,2017,1562323,8,100.0,88.25,100.0,96.08333333333333,97.65
+22968,37,"Sri Venkateswara University, Tirupathy",28,,Computer Science,61637.0,1711244,2017,1557884,8,100.0,88.0,100.0,96.0,97.6
+22943,37,"Sri Venkateswara University, Tirupathy",28,,Computer Science,61638.0,1711255,2017,1557895,8,100.0,88.0,100.0,96.0,97.6
+3738,435,"Alagappa University, Alagappa Nagar, Karaikudi",33,,Computer Science,59083.0,1614423,2017,1465122,8,100.0,91.0,97.87234042553192,96.29078014184397,97.56170212765957
