@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,17 +19,48 @@
   </head>
   <body>
 <!--header-->
+{% comment %}<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#index.html">
+      <img src="static/images/logo.png" alt="Your logo" title="Your logo" style="height:50px;" />
+      &nbsp;
+      
+  </a>
+
+    <a class="navbar-brand" href="#">NWNS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" >
+          <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link disabled">University Ranking</a>
+        </li>        <li class="nav-item">
+          <a class="nav-link disabled">StandAlone Institution Ranking</a>
+        </li>        <li class="nav-item">
+          <a class="nav-link disabled">College Institutions Ranking</a>
+        </li>
+        <a class="navbar-brand" href="#index.html">
+          <img src="static/images/SIH2022.png" alt="Your logo" title="Your logo" style="height:50px; margin-left:80%;" />
+      </a>
+        </div>
+  </div>
+</nav>{% endcomment %}
 <header id="site-header" class="fixed-top">
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark stroke">
         
         <a class="navbar-brand" href="#index.html">
-            <img src="static/images/logo.png" alt="Your logo" title="Your logo" style="height:50px;" />
+            <img src="static/images/logo.ico" alt="Your logo" title="Your logo" style="height:50px; margin-left: -70px; margin-right: 10px;" />
             
         </a>
       <h1>
-        <a class="navbar-brand" href="index.html">
-          New Way New Start<span class="logo">Get Your Dream College</span></a>
+        <a class="navbar-brand"  href="index.html" style="margin-right: 10px;">
+          <span style="margin-left: 25px;">NWNS</span><i><span class="logo" style="margin-left: -30px;">new way new start</span></i></a>
       </h1>
 
         
@@ -47,13 +79,13 @@
             <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item @@about__active">
-            <a class="nav-link" href="university.html">Ranking of University</a>
+            <a class="nav-link" href="university.html">University Ranking</a>
           </li>
           <li class="nav-item @@about__active">
-            <a class="nav-link" href="standalone_institution.html">Ranking of StandAlone Institutions</a>
+            <a class="nav-link" href="standalone_institution.html">StandAlone Institutions Ranking</a>
           </li>
           <li class="nav-item @@about__active">
-            <a class="nav-link" href="college_institution.html">Ranking of College Institutions</a>
+            <a class="nav-link" href="college_institution.html">College Institutions Ranking</a>
           </li>
         </ul>
 
@@ -74,9 +106,6 @@
         </nav>
       </div>
       <!-- //toggle switch for light and dark theme -->
-      <a class="navbar-brand" href="#index.html">
-        <img src="static/images/SIH2022.png" alt="Your logo" title="Your logo" style="height:50px;" />
-    </a>
     </nav>
   </div>
 </header>
@@ -389,6 +418,7 @@
 <!--//MENU-JS-->
 
 <script src="{% static '/js/bootstrap.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
 
 </body>
