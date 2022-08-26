@@ -1,0 +1,11 @@
+,university_id,name,state_code,discipline,faculty_id,course_id,examination_result_id,percentage,pass_percentage,user_defined_score
+31078,35,"Sri Satya Sai Institute of Higher Learning, Anantpur",28,Computer Science,73190.0,2217789,2044899,100.0,100.0,100.0
+31896,37,"Sri Venkateswara University, Tirupathy",28,Computer Science,72999.0,2209237,2038486,100.0,100.0,100.0
+31888,37,"Sri Venkateswara University, Tirupathy",28,Computer Science,72996.0,2209211,2038460,100.0,100.0,100.0
+25663,153,"Veer Narmad South Gujarat University, Surat",24,Computer Science,69496.0,2104649,1879719,96.66666666666667,100.0,99.33333333333334
+20852,404,"Jyoti Vidyapeeth Women's University, Jaipur",8,Computer Science,69305.0,2029157,1864913,95.0,100.0,99.0
+21014,404,"Jyoti Vidyapeeth Women's University, Jaipur",8,Computer Science,69305.0,2029165,1864921,95.0,100.0,99.0
+43060,467,"National Institute of Technology, Tiruchirapalli",33,Computer Science,70834.0,2142130,1975700,100.0,95.83333333333334,98.75
+31871,37,"Sri Venkateswara University, Tirupathy",28,Computer Science,72996.0,2209213,2038462,100.0,95.0,98.5
+42724,220,"Indian Institute of Science, Bangalore",29,Computer Science,74125.0,2238995,2064240,91.75,100.0,98.35
+39880,582,"Ramakrishna Mission Vivekananda Educational  and Research Institute, Howrah",19,Computer Science,71365.0,2167314,1999740,91.5,100.0,98.3

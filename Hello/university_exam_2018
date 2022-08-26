@@ -1,0 +1,11 @@
+,university_id,name,state_code,discipline,faculty_id,course_id,examination_result_id,percentage,pass_percentage,user_defined_score
+17416,37,"Sri Venkateswara University, Tirupathy",28,Computer Science,68204.0,1965010,1803426,100.0,100.0,100.0
+17462,37,"Sri Venkateswara University, Tirupathy",28,Computer Science,68203.0,1964998,1803414,100.0,100.0,100.0
+23903,35,"Sri Satya Sai Institute of Higher Learning, Anantpur",28,Computer Science,68934.0,1986009,1822299,100.0,100.0,100.0
+17471,37,"Sri Venkateswara University, Tirupathy",28,Computer Science,68204.0,1965002,1803418,100.0,95.0,98.5
+28302,350,"Berhampur University, Berhampur",21,Computer Science,,1895782,1738171,100.0,100.0,93.75
+28303,350,"Berhampur University, Berhampur",21,Computer Science,64543.0,1895764,1738153,100.0,100.0,93.75
+28346,350,"Berhampur University, Berhampur",21,Computer Science,64543.0,1895765,1738154,100.0,100.0,93.75
+3034,109,Jawahar Lal Nehru University,7,Computer Science,67026.0,1942226,1782109,100.0,,
+3065,109,Jawahar Lal Nehru University,7,Computer Science,67026.0,1942225,1782108,100.0,,
+3073,109,Jawahar Lal Nehru University,7,Computer Science,67026.0,1942227,1782110,100.0,,

@@ -1,0 +1,11 @@
+,university_id,name,state_code,discipline,faculty_id,course_id,examination_result_id,percentage,pass_percentage,user_defined_score
+29973,35,"Sri Satya Sai Institute of Higher Learning, Anantpur",28,Computer Science,57528.0,1511973,1363739,100.0,100.0,100.0
+1345,500,"Banaras Hindu University, Banaras",9,Computer Science,61655.0,1716514,1558374,100.0,96.0,98.8
+1233,500,"Banaras Hindu University, Banaras",9,Computer Science,61655.0,1716643,1558397,100.0,84.93150684931507,95.47945205479452
+1331,500,"Banaras Hindu University, Banaras",9,Computer Science,61655.0,1716694,1558268,100.0,,
+26556,153,"Veer Narmad South Gujarat University, Surat",24,Computer Science,57968.0,1532575,1384288,96.66666666666667,,
+3443,109,Jawahar Lal Nehru University,7,Computer Science,60532.0,1672182,1521705,94.25,,
+3488,109,Jawahar Lal Nehru University,7,Computer Science,60532.0,1672183,1521706,94.25,,
+3507,109,Jawahar Lal Nehru University,7,Computer Science,60532.0,1672184,1521707,94.25,,
+17369,383,"Punjabi University, Patiala",3,Computer Science,61305.0,1706933,1544354,93.75,100.0,92.5
+17401,383,"Punjabi University, Patiala",3,Computer Science,61305.0,1707048,1544411,93.75,100.0,92.5
