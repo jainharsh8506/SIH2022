@@ -2,11 +2,12 @@ import pandas as pd
 from django.db import connection
 from http.client import HTTPResponse
 from django.shortcuts import render, HttpResponse
-from .models import CollegeInstitution, CollegeInstitutionAccreditation, RefInstituteType, StandaloneInstitution, University
+from .models import CollegeInstitution, CollegeInstitutionAccreditation, Infrastructure, RefInstituteType, StandaloneInstitution, University
 from django.http import JsonResponse
 import pandas as pd
 import json
 from neww import hdd
+from django.contrib import messages
 # Create your views here.
 
 def index(request):
@@ -114,7 +115,24 @@ def accreditation_university(request):
     return render(request,'accreditation_university.html',context)
 
 def infrastructure_college_institution(request):
-    return render(request,'infrastructure_college_institution.html')
+    top10univacc2019=pd.read_csv("static/csv/college_infrastructure_2019.csv")
+    json_records = top10univacc2019.reset_index().to_json(orient ='records')
+    univacc2019 = []
+    univacc2019 = json.loads(json_records)
+    top10univacc2018=pd.read_csv("static/csv/college_infrastructure_2018.csv")
+    json_records = top10univacc2018.reset_index().to_json(orient ='records')
+    univacc2018 = []
+    univacc2018 = json.loads(json_records)
+    
+    top10univacc2017=pd.read_csv("static/csv/college_infrastructure_2017.csv")
+    json_records = top10univacc2017.reset_index().to_json(orient ='records')
+    univacc2017 = []
+    univacc2017 = json.loads(json_records)
+    
+    year_type= request.GET.get('year_type')
+    context={'univacc2019':univacc2019,'univacc2018':univacc2018,'univacc2017':univacc2017,'year_type':year_type}
+    
+    return render(request,'infrastructure_college_institution.html',context)
 
 def infrastructure_standalone_institution(request):
     top10univacc2019=pd.read_csv("static/csv/standalone_infrastructure_2019.csv")
@@ -139,10 +157,44 @@ def infrastructure_university(request):
     return render(request,'infrastructure_university.html')
 
 def examination_result_college_institution(request):
-    return render(request,'examination_result_college_institution.html')
+    top10univacc2019=pd.read_csv("static/csv/college_institution_result_2019.csv")
+    json_records = top10univacc2019.reset_index().to_json(orient ='records')
+    univacc2019 = []
+    univacc2019 = json.loads(json_records)
+    top10univacc2018=pd.read_csv("static/csv/college_institution_result_2018.csv")
+    json_records = top10univacc2018.reset_index().to_json(orient ='records')
+    univacc2018 = []
+    univacc2018 = json.loads(json_records)
+    
+    top10univacc2017=pd.read_csv("static/csv/college_institution_result_2017.csv")
+    json_records = top10univacc2017.reset_index().to_json(orient ='records')
+    univacc2017 = []
+    univacc2017 = json.loads(json_records)
+    
+    year_type= request.GET.get('year_type')
+    context={'univacc2019':univacc2019,'univacc2018':univacc2018,'univacc2017':univacc2017,'year_type':year_type}
+    
+    return render(request,'examination_result_college_institution.html',context)
 
 def examination_result_standalone_institution(request):
-    return render(request,'examination_result_standalone_institution.html')
+    top10univacc2019=pd.read_csv("static/csv/standalone_result_2019.csv")
+    json_records = top10univacc2019.reset_index().to_json(orient ='records')
+    univacc2019 = []
+    univacc2019 = json.loads(json_records)
+    top10univacc2018=pd.read_csv("static/csv/standalone_result_2018.csv")
+    json_records = top10univacc2018.reset_index().to_json(orient ='records')
+    univacc2018 = []
+    univacc2018 = json.loads(json_records)
+    
+    top10univacc2017=pd.read_csv("static/csv/standalone_result_2017.csv")
+    json_records = top10univacc2017.reset_index().to_json(orient ='records')
+    univacc2017 = []
+    univacc2017 = json.loads(json_records)
+    
+    year_type= request.GET.get('year_type')
+    context={'univacc2019':univacc2019,'univacc2018':univacc2018,'univacc2017':univacc2017,'year_type':year_type}
+    
+    return render(request,'examination_result_standalone.html',context)
 
 def examination_result_university(request):
     return render(request,'examination_result_university.html')
@@ -166,7 +218,8 @@ def placement_university(request):
     return render(request,'accreditation_university.html')
 
 def choose_multiple_parameters_college_institution(request):
-    return render(request,'choose_multiple_parameters_college_institution.html')
+    insti_type= request.GET.get('choice')
+    return render(request,'choose_multiple_parameters_college_institution.html',{'chh':insti_type})
 
 def choose_multiple_parameters_standalone_institution(request):
     return render(request,'choose_multiple_parameters_standalone_institution.html')
@@ -176,6 +229,14 @@ def choose_multiple_parameters_university(request):
 
 def start(request):
     return render(request,'start.html')
+
+def test(request):
+        choice= request.GET.get('choice')
+        choice1= request.GET.get('choice1')
+        choice2= request.GET.get('choice2')
+        list1=[choice,choice1,choice2]
+        
+        return render(request,'test.html',{'chh':insti_type})
 
 def accreditation_infrastructure(request):
     find_infra=['playground','library','laboratory','indoor_stadium','connectivity_nkn','cafeteria','computer_center','campus_friendly']
@@ -227,3 +288,5 @@ def accreditation_infrastructure(request):
     ffd= df.to_html()
     context={'obje':obje}    
     return HttpResponse(ffd)
+
+    

@@ -11,11 +11,27 @@
     <!-- google fonts -->
     <link href="//fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <!-- Template CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style-starter.css' %}"/>
-    
-  </head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+<!-- Bootstrap Multiselect CSS -->
+<link rel="stylesheet" href="{% static 'css/bootstrap-multiselect.css' %}">
+<!-- Bootstrap Multiselect JS -->
+<script data-main="{% static 'js' %}" src="{% static 'js/require.min.js' %}"></script>
+</head>
   <body>
 <!--header-->
 <header id="site-header" class="fixed-top">
@@ -97,54 +113,53 @@
     </div>
 </section>
 <!-- //about breadcrumb -->
-<section class="w3l-courses">
-    <div class="blog pb-5" id="courses">
-        <div class="container py-lg-5 py-md-4 py-2">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 item">
-                    <div class="card">
-                        <div class="card-header p-0 position-relative">
-                            <a href="#course-single" class="zoom d-block">
-                                <img class="card-img-bottom d-block" src="static/images/c1.jpg"
-                                    alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="card-body course-details">
-                            <a href="2019_all_college_institution.html" class="course-desc">Year 2019
-                            </a>
-                        </div>
-                    </div>
-                </div>
+	<form method="post" action="/choose_multiple_parameters_college_institution.html">  
+	{% csrf_token %}
+	  <fieldset>
+	<div class="form-check">
+	  <input class="form-check-input" type="checkbox" value="Accreditation" id="Accren">
+	  <label class="form-check-label" for="Accren">
+	    Accreditation
+	  </label>
+	  <p id="text" style="display:none">Checkbox is CHECKED!</p>
+	</div>
+	<div class="form-check">
+	  <input class="form-check-input" type="checkbox" value="Infrastructure" id="infrastructure">
+	  <label class="form-check-label" for="infrastructure">
+	    Infrastructure
+	  </label>
+	  <p id="text" style="display:none">Checkbox is CHECKED!</p>
+	</div>
+	<div class="form-check">
+	  <input class="form-check-input" type="checkbox" value="Examination Result" id="result">
+	  <label class="form-check-label" for="result">
+	    Examination Result
+	  </label>
+	</div>
+	<br>      
+	    <input type="submit" value="Submit now" onclick="myFunction()" />    
+	  </fieldset>
+	</form>
+<form>
+<fieldset>
+  <legend>Please select your parameters</legend>
+  <input type="radio" name="choice" id="accreditation" value="accreditation" /><lable for="accreditation">Accreditation</lable><br />
+  <input type="radio" name="choice" id="infrastructure" value="infrastructure" /><lable for="infrastructure">Infrastructure</lable><br />
+  <input type="radio" name="choice" id="exam" value="exam" /><lable for="exam">Examination Result</lable><br />
+</fieldset>
+</form>
+  {{chh}}
+{% comment %}
+	
+		<select class="selectpicker" multiple data-live-search="true" onclick="myFunction()">
+		  <input type="checkbox">Accreditation</input>
+		  <input type="checkbox" >Infrastructure</input>
+		  <input type="checkbox">Examination</input>
+		</select>
+{% endcomment %}
 
-                <div class="col-lg-4 col-md-6 item mt-md-0 mt-5">
-                    <div class="card">
-                        <div class="card-header p-0 position-relative">
-                            <a href="#course-single" class="zoom d-block">
-                                <img class="card-img-bottom d-block" src="static/images/c2.jpg"
-                                    alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="card-body course-details">
-                            <a href="2018_all_college_institution.html" class="course-desc">Year 2018</a>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-lg-4 col-md-6 item mt-lg-0 mt-5">
-                    <div class="card">
-                        <div class="card-header p-0 position-relative">
-                            <a href="#course-single" class="zoom d-block">
-                                <img class="card-img-bottom d-block" src="static/images/c3.jpg"
-                                    alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="card-body course-details">
-                            <a href="2017_all_college_institution.html" class="course-desc">Year 2017</a>
-                        </div>
-                    </div>
-                </div>
-                </div>
-</section>
+
 <!-- footer -->
 <section class="w3l-footer-29-main">
   <div class="footer-29 py-5">
@@ -198,7 +213,34 @@
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
       }
+      
+      function myFunction() {
+        // Get the checkbox
+        var checkBox = document.getElementById("flexCheckDefault");
+        // Get the output text
+        var text = document.getElementById("text");
+        alert("I am an alert box!");
+        var accen1=document.getElementById('Accren').checked;
+        var accen2=document.getElementById('infrastructure').checked;
+        var accen3=document.getElementById('result').checked;
+        var l=[accen1,accen2,accen3];
+        console.log(l);
+        $.ajax({
+          type: 'POST',
+          url: '/choose_multiple_parameters_college_institution/',
+          data: {'list': l},
+      });
+        // If the checkbox is checked, display the output text
+        if (checkBox.checked == true){
+          text.style.display = "block";
+        } else {
+          text.style.display = "none";
+        }
+      }
     </script>
+
+
+    {{new}}
     <!-- /move top -->
   </section>
   <!-- //copyright -->
@@ -321,3 +363,5 @@
 
 <script src="{% static '/js/bootstrap.min.js' %}"></script>
 
+</body>
+</html>
