@@ -216,9 +216,27 @@ def placement_standalone_institution(request):
     return render(request,'placement_standalone_institution.html')
 
 def placement_university(request):
-    return render(request,'accreditation_university.html')
+    return render(request,'placement_university.html')
 
 def choose_multiple_parameters_college_institution(request):
+    return render(request,'choose_multiple_parameters_college_institution.html')
+
+def choose_multiple_parameters_standalone_institution(request):
+    return render(request,'choose_multiple_parameters_standalone_institution.html')
+
+def choose_multiple_parameters_university(request):
+    top10univacc2019=pd.read_csv("static/csv/overall_combined_result_2019.csv")
+    json_records = top10univacc2019.reset_index().to_json(orient ='records')
+    univacc2019 = []
+    univacc2019 = json.loads(json_records)
+    year_type= request.GET.get('year_type')
+    context={'univacc2019':univacc2019,'year_type':year_type}
+    return render(request,'choose_multiple_parameters_university.html',context)
+
+def start(request):
+    return render(request,'start.html')
+
+def test(request):
     choice= request.GET.get('choice')
     choice1= request.GET.get('choice1')
     choice2= request.GET.get('choice2')
@@ -227,31 +245,17 @@ def choose_multiple_parameters_college_institution(request):
     for i in list1:
         if i!=None:
             newlist.append(i)
-        
-    context={'list':list1,'cho':choice,'cho1':choice,'cho2':choice2,'newl':newlist}
-    return render(request,'choose_multiple_parameters_college_institution.html',context)
-
-def choose_multiple_parameters_standalone_institution(request):
-    return render(request,'choose_multiple_parameters_standalone_institution.html')
-
-def choose_multiple_parameters_university(request):
-    return render(request,'choose_multiple_parameters_university.html')
-
-def start(request):
-    return render(request,'start.html')
-
-def test(request):
-        choice= request.GET.get('choice')
-        choice1= request.GET.get('choice1')
-        choice2= request.GET.get('choice2')
-        list1=[choice,choice1,choice2]
-        newlist=[]
-        for i in list1:
-            if i!=None:
-                newlist.append(i)
-        
-        context={'list':list1,'cho':choice,'cho1':choice,'cho2':choice2,'newl':newlist}
-        return render(request,'test.html',context)
+    print(newlist)
+    university2019=pd.read_csv("static/csv/university2019.csv")
+    nnlist=['university_id','name']
+    nnlist.extend(newlist)
+    temp=university2019[nnlist]
+    temp.sort_values((newlist),ascending=False)
+    temp['combined']=temp[newlist].mean(axis=1)
+    print(university2019)
+    print(temp)
+    context={'list':list1,'cho':choice,'cho1':choice,'cho2':choice2,'newl':newlist,'universitycombined':temp,'nnlist':nnlist,'univ':university2019}
+    return render(request,'test.html',context)
 
 def accreditation_infrastructure(request):
     find_infra=['playground','library','laboratory','indoor_stadium','connectivity_nkn','cafeteria','computer_center','campus_friendly']
