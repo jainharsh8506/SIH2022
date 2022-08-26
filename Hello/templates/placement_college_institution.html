@@ -81,11 +81,11 @@
 <section class="w3l-breadcrumb">
     <div class="breadcrumb-bg breadcrumb-bg-about py-5">
         <div class="container pt-lg-5 pt-3 p-lg-4 pb-3">
-            <h2 class="title mt-5 pt-lg-5 pt-sm-3">Placement</h2>
+            <h2 class="title mt-5 pt-lg-5 pt-sm-3">Research Facilities</h2>
             <ul class="breadcrumbs-custom-path pb-sm-5 pb-4 mt-2 text-center mb-md-5">
                 <li><a href="index.html">Home</a></li>
                 <li class="active"> / College Institution </li>
-                <li class="active"> / Placement </li>
+                <li class="active"> / Research Facilities </li>
             </ul>
         </div>
     </div>
@@ -96,54 +96,82 @@
     </div>
 </section>
 <!-- //about breadcrumb -->
-<section class="w3l-courses">
-    <div class="blog pb-5" id="courses">
-        <div class="container py-lg-5 py-md-4 py-2">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 item">
-                    <div class="card">
-                        <div class="card-header p-0 position-relative">
-                            <a href="#course-single" class="zoom d-block">
-                                <img class="card-img-bottom d-block" src="static/images/c1.jpg"
-                                    alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="card-body course-details">
-                            <a href="2019_placement_college_institution.html" class="course-desc">Year 2019
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 item mt-md-0 mt-5">
-                    <div class="card">
-                        <div class="card-header p-0 position-relative">
-                            <a href="#course-single" class="zoom d-block">
-                                <img class="card-img-bottom d-block" src="static/images/c2.jpg"
-                                    alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="card-body course-details">
-                            <a href="2018_placement_college_institution.html" class="course-desc">Year 2018</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 item mt-lg-0 mt-5">
-                    <div class="card">
-                        <div class="card-header p-0 position-relative">
-                            <a href="#course-single" class="zoom d-block">
-                                <img class="card-img-bottom d-block" src="static/images/c3.jpg"
-                                    alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="card-body course-details">
-                            <a href="2017_placement_college_institution.html" class="course-desc">Year 2017</a>
-                        </div>
-                    </div>
-                </div>
-                </div>
-</section>
+<h1 class="title mt-5 pt-lg-5 pt-sm-3">Top 10 university according to Research Facilities</h1><br><br>
+<form action="/placement_college_institution.html">
+  <select class="form-select" id="institution_type" name="year_type" aria-label="Default select example">
+    <option selected>Select the year</option>
+    <option value="2019">2019</option>
+    <option value="2018">2018</option>
+    <option value="2017">2017</option>
+  </select>
+<br>
+  <center><input type="submit" class="btn btn-info" value="Search"/></center><br>
+  </form>
+  {% if year_type == "2019" %}
+  <h3>Year:2019</h3>
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>College Institution Id</th>
+        <th>Name</th>
+        <th>Number Of Phd Professors</th>
+      </tr>
+      </thead>
+        {% for i in univacc2019 %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{i.college_institution_id}}</td>
+          <td>{{i.name}}</td>
+          <td>{{i.no_of_phd}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+	{% elif year_type == "2018" %}
+  <h3>Year:2018</h3>
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>College Institution Id</th>
+        <th>Name</th>
+        <th>Number Of Phd Professors</th>
+      </tr>
+    </thead>
+      {% for i in univacc2018 %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.college_institution_id}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.no_of_phd}}</td>
+        </tr>
+      {% endfor %}
+    </table>
+         
+	{% elif year_type == "2017" %}
+  <h3>Year:2017</h3>
+			<table class="table table-dark">
+        <thead>
+        <tr>
+          <th>S.No</th>
+          <th>College Institution Id</th>
+          <th>Name</th>
+          <th>Number Of Phd Professors</th>
+        </tr>
+      </thead>
+        {% for i in univacc2017 %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.college_institution_id}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.no_of_phd}}</td>
+            </tr>
+        {% endfor %}
+      </table>
+           
+	
+{% else %}
+{% endif %}
 <!-- footer -->
 <section class="w3l-footer-29-main">
   <div class="footer-29 py-5">

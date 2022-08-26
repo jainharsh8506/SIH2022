@@ -155,7 +155,24 @@ def infrastructure_standalone_institution(request):
     return render(request,'infrastructure_standalone_institution.html',context)
 
 def infrastructure_university(request):
-    return render(request,'infrastructure_university.html')
+    top10univacc2019=pd.read_csv("static/csv/university_infra_2019.csv")
+    json_records = top10univacc2019.reset_index().to_json(orient ='records')
+    univacc2019 = []
+    univacc2019 = json.loads(json_records)
+    top10univacc2018=pd.read_csv("static/csv/university_infra_2018.csv")
+    json_records = top10univacc2018.reset_index().to_json(orient ='records')
+    univacc2018 = []
+    univacc2018 = json.loads(json_records)
+    
+    top10univacc2017=pd.read_csv("static/csv/university_infra_2017.csv")
+    json_records = top10univacc2017.reset_index().to_json(orient ='records')
+    univacc2017 = []
+    univacc2017 = json.loads(json_records)
+    
+    year_type= request.GET.get('year_type')
+    context={'univacc2019':univacc2019,'univacc2018':univacc2018,'univacc2017':univacc2017,'year_type':year_type}
+    
+    return render(request,'infrastructure_university.html',context)
 
 def examination_result_college_institution(request):
     top10univacc2019=pd.read_csv("static/csv/college_institution_result_2019.csv")
@@ -198,7 +215,24 @@ def examination_result_standalone_institution(request):
     return render(request,'examination_result_standalone.html',context)
 
 def examination_result_university(request):
-    return render(request,'examination_result_university.html')
+    top10univacc2019=pd.read_csv("static/csv/university_exam_2019.csv")
+    json_records = top10univacc2019.reset_index().to_json(orient ='records')
+    univacc2019 = []
+    univacc2019 = json.loads(json_records)
+    top10univacc2018=pd.read_csv("static/csv/university_exam_2018.csv")
+    json_records = top10univacc2018.reset_index().to_json(orient ='records')
+    univacc2018 = []
+    univacc2018 = json.loads(json_records)
+    
+    top10univacc2017=pd.read_csv("static/csv/university_exam_2017.csv")
+    json_records = top10univacc2017.reset_index().to_json(orient ='records')
+    univacc2017 = []
+    univacc2017 = json.loads(json_records)
+    
+    year_type= request.GET.get('year_type')
+    context={'univacc2019':univacc2019,'univacc2018':univacc2018,'univacc2017':univacc2017,'year_type':year_type}
+    
+    return render(request,'examination_result_university.html',context)
 
 def sfr_college_institution(request):
     return render(request,'sfr_college_institution.html')
@@ -210,7 +244,23 @@ def sfr_university(request):
     return render(request,'sfr_university.html')
 
 def placement_college_institution(request):
-    return render(request,'placement_college_institution.html')
+    top10univacc2019=pd.read_csv("static/csv/college_institution_research_2019.csv")
+    json_records = top10univacc2019.reset_index().to_json(orient ='records')
+    univacc2019 = []
+    univacc2019 = json.loads(json_records)
+    top10univacc2018=pd.read_csv("static/csv/college_institution_research_2018.csv")
+    json_records = top10univacc2018.reset_index().to_json(orient ='records')
+    univacc2018 = []
+    univacc2018 = json.loads(json_records)
+    
+    top10univacc2017=pd.read_csv("static/csv/college_institution_research_2017.csv")
+    json_records = top10univacc2017.reset_index().to_json(orient ='records')
+    univacc2017 = []
+    univacc2017 = json.loads(json_records)
+    
+    year_type= request.GET.get('year_type')
+    context={'univacc2019':univacc2019,'univacc2018':univacc2018,'univacc2017':univacc2017,'year_type':year_type}
+    return render(request,'placement_college_institution.html',context)
 
 def placement_standalone_institution(request):
     return render(request,'placement_standalone_institution.html')

@@ -110,7 +110,7 @@
   
   {% if year_type == "2019" %}
   <h3>Year:2019</h3>
-  <table class="table-active">
+  <table class="table table-dark">
     <thead>
         <tr>
           <th>S.No</th>
@@ -131,25 +131,24 @@
           <td>{{forloop.counter}}</td>
           <td>{{i.name}}</td>
           <td>{{i.aishe_code}}</td>
-          <td>{{i.Playground}}</td>
-          <td>{{i.Library}}</td>
-          <td>{{i.Internet_Connectivity}}</td>
-          <td>{{i.Indoor_Stadium}}</td>
-          <td>{{i.Cafeteria}}</td>
-          <td>{{i.Computer_Center}}</td>
-          <td>{{i.Campus_Friendly}}</td>
-          <td>{{i.Total_Infrastructure}}</td>
+          <td>{{i.playground}}</td>
+          <td>{{i.library}}</td>
+          <td>{{i.connectivity_nkn}}</td>
+          <td>{{i.indoor_stadium}}</td>
+          <td>{{i.cafeteria}}</td>
+          <td>{{i.computer_center}}</td>
+          <td>{{i.campus_friendly}}</td>
+          <td>{{i.infra_count}}</td>
         </tr>
         {% endfor %}
       </table>
 	{% elif year_type == "2018" %}
   <h3>Year:2018</h3>
-  <table class="table-active">
+  <table class="table table-dark">
     <thead>
       <tr>
         <th>S.No</th>
         <th>Name</th>
-        <th>Aishe Code</th>
         <th>Playground</th>
         <th>Library</th>
         <th>Internet Connectivity</th>
@@ -164,27 +163,25 @@
       <tr>
         <td>{{forloop.counter}}</td>
         <td>{{i.name}}</td>
-        <td>{{i.aishe_code}}</td>
-        <td>{{i.Playground}}</td>
-        <td>{{i.Library}}</td>
-        <td>{{i.Internet_Connectivity}}</td>
-        <td>{{i.Indoor_Stadium}}</td>
-        <td>{{i.Cafeteria}}</td>
-        <td>{{i.Computer_Center}}</td>
-        <td>{{i.Campus_Friendly}}</td>
-        <td>{{i.Total_Infrastructure}}</td>
+        <td>{{i.playground}}</td>
+        <td>{{i.library}}</td>
+        <td>{{i.connectivity_nkn}}</td>
+        <td>{{i.indoor_stadium}}</td>
+        <td>{{i.cafeteria}}</td>
+        <td>{{i.computer_center}}</td>
+        <td>{{i.campus_friendly}}</td>
+        <td>{{i.infra_count}}</td>
       </tr>
       {% endfor %}
     </table>
          
 	{% elif year_type == "2017" %}
   <h3>Year:2017</h3>
-			<table class="table-active">
+			<table class="table table-dark">
         <thead>
         <tr>
           <th>S.No</th>
           <th>Name</th>
-          <th>Aishe Code</th>
           <th>Playground</th>
           <th>Library</th>
           <th>Internet Connectivity</th>
@@ -199,15 +196,14 @@
         <tr>
           <td>{{forloop.counter}}</td>
           <td>{{i.name}}</td>
-          <td>{{i.aishe_code}}</td>
-          <td>{{i.Playground}}</td>
-          <td>{{i.Library}}</td>
-          <td>{{i.Internet_Connectivity}}</td>
-          <td>{{i.Indoor_Stadium}}</td>
-          <td>{{i.Cafeteria}}</td>
-          <td>{{i.Computer_Center}}</td>
-          <td>{{i.Campus_Friendly}}</td>
-          <td>{{i.Total_Infrastructure}}</td>
+          <td>{{i.playground}}</td>
+          <td>{{i.library}}</td>
+          <td>{{i.connectivity_nkn}}</td>
+          <td>{{i.indoor_stadium}}</td>
+          <td>{{i.cafeteria}}</td>
+          <td>{{i.computer_center}}</td>
+          <td>{{i.campus_friendly}}</td>
+          <td>{{i.infra_count}}</td>
         </tr>
         {% endfor %}
       </table>
