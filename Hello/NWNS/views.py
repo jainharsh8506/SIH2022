@@ -7,6 +7,7 @@ from django.http import JsonResponse
 import pandas as pd
 import json
 from neww import hdd
+from findinfra import dynamic_infra_sum
 from django.contrib import messages
 # Create your views here.
 
@@ -218,8 +219,17 @@ def placement_university(request):
     return render(request,'accreditation_university.html')
 
 def choose_multiple_parameters_college_institution(request):
-    insti_type= request.GET.get('choice')
-    return render(request,'choose_multiple_parameters_college_institution.html',{'chh':insti_type})
+    choice= request.GET.get('choice')
+    choice1= request.GET.get('choice1')
+    choice2= request.GET.get('choice2')
+    list1=[choice,choice1,choice2]
+    newlist=[]
+    for i in list1:
+        if i!=None:
+            newlist.append(i)
+        
+    context={'list':list1,'cho':choice,'cho1':choice,'cho2':choice2,'newl':newlist}
+    return render(request,'choose_multiple_parameters_college_institution.html',context)
 
 def choose_multiple_parameters_standalone_institution(request):
     return render(request,'choose_multiple_parameters_standalone_institution.html')
@@ -235,8 +245,13 @@ def test(request):
         choice1= request.GET.get('choice1')
         choice2= request.GET.get('choice2')
         list1=[choice,choice1,choice2]
+        newlist=[]
+        for i in list1:
+            if i!=None:
+                newlist.append(i)
         
-        return render(request,'test.html',{'chh':insti_type})
+        context={'list':list1,'cho':choice,'cho1':choice,'cho2':choice2,'newl':newlist}
+        return render(request,'test.html',context)
 
 def accreditation_infrastructure(request):
     find_infra=['playground','library','laboratory','indoor_stadium','connectivity_nkn','cafeteria','computer_center','campus_friendly']
