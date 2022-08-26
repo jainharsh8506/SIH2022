@@ -18,7 +18,7 @@ urlpatterns = [
     path("accreditation_college_institution.html", views.accreditation_college_institution, name="accreditation_college_institution"),
     path("standalone_institution.html", views.standalone_institution, name="standalone_institution"),
     path("infrastructure_standalone_institution.html", views.infrastructure_standalone_institution, name="infrastructure_standalone_institution"),
-    path("examination_result_standalone_institution.html", views.examination_result_standalone_institution, name="examination_result_standalone_institution"),
+    path("examination_result_standalone.html", views.examination_result_standalone_institution, name="examination_result_standalone"),
     path("choose_multiple_parameters_standalone_institution.html", views.choose_multiple_parameters_standalone_institution, name="choose_multiple_parameters_standalone_institution"),
     path("placement_standalone_institution.html", views.placement_standalone_institution, name="placement_standalone_institution"),
     path("sfr_standalone_institution.html", views.sfr_standalone_institution, name="sfr_standalone_institution"),
@@ -31,6 +31,7 @@ urlpatterns = [
     path("sfr_university.html", views.sfr_university, name="sfr_university"),
     path("accreditation_university.html", views.accreditation_university, name="accreditation_university"),
     path("start.html", views.start, name="start"),
+    path("test.html", views.test, name="test"),
     path("accreditation_infrastructure", views.accreditation_infrastructure, name="table")
 ]
 urlpatterns+= staticfiles_urlpatterns()

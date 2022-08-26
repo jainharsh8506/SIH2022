@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>NWNS - New Way New Start | Home</title>
+  </head>
+  <body>
+    <form>
+        <fieldset>
+          <legend>Please select your parameters</legend>
+          <input type="radio" name="choice" id="accreditation" value="accredtitation" /><lable for="accredtitation">Accreditation</lable><br />
+          <input type="radio" name="choice1" id="infrastructure" value="infrastructure" /><lable for="infrastructure">Infrastructure</lable><br />
+          <input type="radio" name="choice2" id="exam" value="exam" /><lable for="exam">Examination Result</lable><br />
+          <input type="submit" value="Submit now"> 
+        </fieldset>
+        </form>
+
+        {{cho}}
+        {{cho1}}
+        {{cho2}}
+        {{newl}}
+        {{nnlist}}
+        <table>
+            <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Name</th>
+                  <th>Accreditation</th>
+                  <th>Infrastructure</th>
+                </tr>
+              </thead>
+                {% for i in univ %}
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{i.name}}</td>
+                  <td>{{i.accredtitation}}</td>
+                  <td>{{i.infrastructure}}</td>
+                </tr>
+                {% endfor %}
+              </table>
+
+    </body>
