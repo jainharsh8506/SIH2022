@@ -225,18 +225,6 @@ def choose_multiple_parameters_standalone_institution(request):
     return render(request,'choose_multiple_parameters_standalone_institution.html')
 
 def choose_multiple_parameters_university(request):
-    top10univacc2019=pd.read_csv("static/csv/overall_combined_result_2019.csv")
-    json_records = top10univacc2019.reset_index().to_json(orient ='records')
-    univacc2019 = []
-    univacc2019 = json.loads(json_records)
-    year_type= request.GET.get('year_type')
-    context={'univacc2019':univacc2019,'year_type':year_type}
-    return render(request,'choose_multiple_parameters_university.html',context)
-
-def start(request):
-    return render(request,'start.html')
-
-def test(request):
     choice= request.GET.get('choice')
     choice1= request.GET.get('choice1')
     choice2= request.GET.get('choice2')
@@ -252,10 +240,23 @@ def test(request):
     temp=university2019[nnlist]
     temp.sort_values((newlist),ascending=False)
     temp['combined']=temp[newlist].mean(axis=1)
+    print(type(university2019))
+    print("University Var--------")
     print(university2019)
+    print("temp var---------")
     print(temp)
+    json_records = temp.reset_index().to_json(orient ='records')
+    temp = []
+    temp = json.loads(json_records)
     context={'list':list1,'cho':choice,'cho1':choice,'cho2':choice2,'newl':newlist,'universitycombined':temp,'nnlist':nnlist,'univ':university2019}
-    return render(request,'test.html',context)
+    return render(request,'choose_multiple_parameters_university.html',context)
+
+def start(request):
+    return render(request,'start.html')
+
+def test(request):
+    
+    return render(request,'test.html')
 
 def accreditation_infrastructure(request):
     find_infra=['playground','library','laboratory','indoor_stadium','connectivity_nkn','cafeteria','computer_center','campus_friendly']

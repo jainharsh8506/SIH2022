@@ -147,7 +147,7 @@
 	                </div>
 	</section>
 {% endcomment %}
-<h1 class="title mt-5 pt-lg-5 pt-sm-3">Top 10 Universities according to Accreditation</h1>
+<h1 class="title mt-5 pt-lg-5 pt-sm-3">Top 10 Universities according to Accreditation</h1><br>
 <form action="/accreditation_university.html">
   <select class="form-select" id="institution_type" name="year_type" aria-label="Default select example">
     <option selected>Select the year</option>
@@ -160,7 +160,7 @@
   </form>
   {% if year_type == "2019" %}
   <h3>Year:2019</h3>
-  <table class="table">
+  <table class="table table-dark">
     <thead>
         <tr>
           <th>S.No</th>
@@ -184,7 +184,7 @@
       </table>
 	{% elif year_type == "2018" %}
   <h3>Year:2018</h3>
-  <table class="table">
+  <table class="table table-dark">
     <thead>
       <tr>
         <th>S.No</th>
@@ -209,7 +209,7 @@
          
 	{% elif year_type == "2017" %}
   <h3>Year:2017</h3>
-			<table class="table">
+			<table class="table table-dark">
         <thead>
         <tr>
           <th>S.No</th>
@@ -395,6 +395,9 @@
   //Main navigation Active Class Add Remove
   $(".navbar-toggler").on("click", function () {
     $("header").toggleClass("active");
+  });
+  $(".checkbox").on("click", function () {
+    $("table").addClass("table-dark");
   });
   $(document).on("ready", function () {
     if ($(window).width() > 991) {

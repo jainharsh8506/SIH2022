@@ -1327,7 +1327,8 @@ pre {
 .table-dark,
 .table-dark > th,
 .table-dark > td {
-  background-color: #c6c8ca; }
+  background-color: #c6c8ca;
+color: #fff  }
 
 .table-dark th,
 .table-dark td,
@@ -2744,6 +2745,14 @@ input[type="button"].btn-block {
     content: "";
     background: no-repeat 50% / 50% 50%; }
 
+.checkker{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height:25px;
+  width:25px;
+  background-color:#eee;
+}
 .custom-checkbox .custom-control-label::before {
   border-radius: 0.25rem; }
 

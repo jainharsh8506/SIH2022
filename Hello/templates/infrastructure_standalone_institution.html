@@ -161,7 +161,7 @@
   
   {% if year_type == "2019" %}
   <h3>Year:2019</h3>
-  <table class="table">
+  <table class="table table-dark">
     <thead>
         <tr>
           <th>S.No</th>
@@ -195,7 +195,7 @@
       </table>
 	{% elif year_type == "2018" %}
   <h3>Year:2018</h3>
-  <table class="table">
+  <table class="table table-dark">
     <thead>
       <tr>
         <th>S.No</th>
@@ -230,7 +230,7 @@
          
 	{% elif year_type == "2017" %}
   <h3>Year:2017</h3>
-			<table class="table">
+			<table class="table table-dark">
         <thead>
         <tr>
           <th>S.No</th>
@@ -302,28 +302,28 @@
       &#10548;
     </button>
     <script>
-      // When the user scrolls down 20px from the top of the document, show the button
-      window.onscroll = function () {
-        scrollFunction()
-      };
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction()
+    };
 
-      function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-          document.getElementById("movetop").style.display = "block";
-        } else {
-          document.getElementById("movetop").style.display = "none";
-        }
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("movetop").style.display = "block";
+      } else {
+        document.getElementById("movetop").style.display = "none";
       }
+    }
 
-      // When the user clicks on the button, scroll to the top of the document
-      function topFunction() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-      }
-    </script>
-    <!-- /move top -->
-  </section>
-  <!-- //copyright -->
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+  <!-- /move top -->
+</section>
+<!-- //copyright -->
 </section>
 <!-- //footer -->
 
@@ -336,110 +336,116 @@
 <script src="{% static '/js/jquery.waypoints.min.js' %}"></script>
 <script src="{% static '/js/jquery.countup.js' %}"></script>
 <script>
-  $('.counter').countUp();
+$('.counter').countUp();
 </script>
 <!-- //stats number counter -->
 
 <script src="{% static '/js/owl.carousel.js' %}"></script>
 <!-- script for banner slider-->
 <script>
-  $(document).ready(function () {
-    $('.owl-one').owlCarousel({
-      loop: true,
-      margin: 0,
-      nav: false,
-      dots: false,
-      responsiveClass: true,
-      autoplay: true,
-      autoplayTimeout: 5000,
-      autoplaySpeed: 1000,
-      autoplayHoverPause: false,
-      responsive: {
-        0: {
-          items: 1
-        },
-        480: {
-          items: 1
-        },
-        667: {
-          items: 1
-        },
-        1000: {
-          items: 1,
-          nav: true
-        }
+$(document).ready(function () {
+  $('.owl-one').owlCarousel({
+    loop: true,
+    margin: 0,
+    nav: false,
+    dots: false,
+    responsiveClass: true,
+    autoplay: true,
+    autoplayTimeout: 5000,
+    autoplaySpeed: 1000,
+    autoplayHoverPause: false,
+    responsive: {
+      0: {
+        items: 1
+      },
+      480: {
+        items: 1
+      },
+      667: {
+        items: 1
+      },
+      1000: {
+        items: 1,
+        nav: true
       }
-    })
+    }
   })
+})
 </script>
 <!-- //script -->
 
 <!-- script for tesimonials carousel slider -->
 <script>
-  $(document).ready(function () {
-      $("#owl-demo1").owlCarousel({
-          loop: true,
-          margin: 20,
-          nav: false,
-          responsiveClass: true,
-          responsive: {
-              0: {
-                  items: 1,
-                  nav: false
-              },
-              768: {
-                  items: 2,
-                  nav: false
-              },
-              1000: {
-                  items: 3,
-                  nav: false,
-                  loop: false
-              }
-          }
-      })
-  })
+$(document).ready(function () {
+    $("#owl-demo1").owlCarousel({
+        loop: true,
+        margin: 20,
+        nav: false,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1,
+                nav: false
+            },
+            768: {
+                items: 2,
+                nav: false
+            },
+            1000: {
+                items: 3,
+                nav: false,
+                loop: false
+            }
+        }
+    })
+})
 </script>
 <!-- //script for tesimonials carousel slider -->
 
 <!-- disable body scroll which navbar is in active -->
 <script>
-  $(function () {
-    $('.navbar-toggler').click(function () {
-      $('body').toggleClass('noscroll');
-    })
-  });
+$(function () {
+  $('.navbar-toggler').click(function () {
+    $('body').toggleClass('noscroll');
+  })
+});
 </script>
 <!-- disable body scroll which navbar is in active -->
 
 <!--/MENU-JS-->
 <script>
-  $(window).on("scroll", function () {
-    var scroll = $(window).scrollTop();
+$(window).on("scroll", function () {
+  var scroll = $(window).scrollTop();
 
-    if (scroll >= 80) {
-      $("#site-header").addClass("nav-fixed");
-    } else {
-      $("#site-header").removeClass("nav-fixed");
-    }
-  });
+  if (scroll >= 80) {
+    $("#site-header").addClass("nav-fixed");
+  } else {
+    $("#site-header").removeClass("nav-fixed");
+  }
+});
 
-  //Main navigation Active Class Add Remove
-  $(".navbar-toggler").on("click", function () {
-    $("header").toggleClass("active");
-  });
-  $(document).on("ready", function () {
+//Main navigation Active Class Add Remove
+$(".navbar-toggler").on("click", function () {
+  $("header").toggleClass("active");
+});
+$(".checkbox").on("click", function () {
+  $("table").addClass("table-dark");
+});
+$(document).on("ready", function () {
+  if ($(window).width() > 991) {
+    $("header").removeClass("active");
+  }
+  $(window).on("resize", function () {
     if ($(window).width() > 991) {
       $("header").removeClass("active");
     }
-    $(window).on("resize", function () {
-      if ($(window).width() > 991) {
-        $("header").removeClass("active");
-      }
-    });
   });
+});
 </script>
 <!--//MENU-JS-->
 
 <script src="{% static '/js/bootstrap.min.js' %}"></script>
 
+</body>
+
+</html>

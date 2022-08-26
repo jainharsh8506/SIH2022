@@ -30,14 +30,16 @@
                   <th>Name</th>
                   <th>Accreditation</th>
                   <th>Infrastructure</th>
+                  <th>Combined</th>
                 </tr>
               </thead>
-                {% for i in univ %}
+                {% for i in universitycombined %}
                 <tr>
                   <td>{{forloop.counter}}</td>
                   <td>{{i.name}}</td>
                   <td>{{i.accredtitation}}</td>
                   <td>{{i.infrastructure}}</td>
+                  <td>{{i.combined}}</td>
                 </tr>
                 {% endfor %}
               </table>
